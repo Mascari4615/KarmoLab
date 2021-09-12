@@ -1,0 +1,5 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(CP2_Programs.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
+  Program2.c
+D:\CS-CP2-Programs\Program2\Program2.c(77,2): warning C4098: 'main': 'void' 함수에서 값을 반환하고 있습니다.
+D:\CS-CP2-Programs\Program2\Program2.c(9,1): warning C4047: '초기화 중': 'char'의 간접 참조 수준이 'char [1]'과(와) 다릅니다.
+  CP2_Programs.vcxproj -> D:\CS-CP2-Programs\x64\Debug\Week1.exe
