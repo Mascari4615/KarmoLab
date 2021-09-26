@@ -3,9 +3,6 @@
 
 void sort3(int x, int y, int z)
 {
-	int s, m, b;
-
-	int temp;
 	int arr[3] = { x, y, z };
 
 	for (int i = 0; i < 3; i++)
@@ -14,16 +11,16 @@ void sort3(int x, int y, int z)
 		{
 			if (arr[i] > arr[j])
 			{
-				temp = arr[i];
+				int temp = arr[i];
 				arr[i] = arr[j];
 				arr[j] = temp;
 			}
 		}
 	}
 
-	s = arr[0];
-	m = arr[1];
-	b = arr[2];
+	int s = arr[0];
+	int m = arr[1];
+	int b = arr[2];
 
 	printf("[Sorted Result] s: %d, m: %d, b: %d", s, m, b);
 }
@@ -36,5 +33,6 @@ void main()
 	printf("x: "); scanf("%d", &x);
 	printf("y: "); scanf("%d", &y);
 	printf("z: "); scanf("%d", &z);
+
 	sort3(x, y, z);
 }
