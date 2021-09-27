@@ -1,14 +1,13 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-int* sort3(int x, int y, int z)
+void sort3(int * arr)
 {
 	int temp;
-	int arr[3] = { x, y, z };
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
-		for (int j = i; j < 3; j++)
+		for (int j = i + 1; j < 3; j++)
 		{
 			if (arr[i] > arr[j])
 			{
@@ -18,7 +17,6 @@ int* sort3(int x, int y, int z)
 			}
 		}
 	}
-	return arr;
 }
 
 void main()
@@ -30,7 +28,8 @@ void main()
 	printf("y: "); scanf("%d", &y);
 	printf("z: "); scanf("%d", &z);
 
-	int* arr = sort3(x, y, z);
+	int arr[3] = { x, y, z };
+	sort3(arr);
 
 	int s = arr[0];
 	int m = arr[1];
