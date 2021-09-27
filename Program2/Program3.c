@@ -4,14 +4,15 @@
 void sort3(int x, int y, int z)
 {
 	int arr[3] = { x, y, z };
+	int temp;
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
-		for (int j = i; j < 3; j++)
+		for (int j = i + 1; j < 3; j++)
 		{
 			if (arr[i] > arr[j])
 			{
-				int temp = arr[i];
+				temp = arr[i];
 				arr[i] = arr[j];
 				arr[j] = temp;
 			}
