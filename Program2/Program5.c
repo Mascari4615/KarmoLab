@@ -4,9 +4,9 @@
 void seat(int n, int c, int * buf)
 {
 	int temp;
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n - 1; i++)
 	{
-		for (int j = i; j < n; j++)
+		for (int j = i + 1; j < n; j++)
 		{
 			if (buf[i] > buf[j])
 			{
@@ -15,31 +15,19 @@ void seat(int n, int c, int * buf)
 				buf[j] = temp;
 			}
 		}
-	}
 
-	temp = 0;
-	for (int i = 0; i < n; i++)
-	{
 		printf("%d", buf[i]);
-		if (++temp == c) 
-		{ 
-			printf("\n"); 
-			temp = 0; 
-		}
+		if (i != 0 && (i + 1) % c == 0) printf("\n");
 		else printf(" ");
 	}
 }
 
-void main() {
-	int n; // 학생 수
-	int c; // 자리 수
+void main() 
+{
+	int n, c; // 학생 수, 자리 수
 	int buf[100]; // 학생들 키 값을 저장하기 위한 배열
 
 	scanf("%d %d", &n, &c);
-
-	for (int i = 0; i < n; i++) 
-	{
-		scanf("%d", &buf[i]);
-	}
+	for (int i = 0; i < n; i++) scanf("%d", &buf[i]);
 	seat(n, c, buf);
 }
