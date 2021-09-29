@@ -1,22 +1,22 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-int GetReverse(int origin)
+unsigned int GetReverse(unsigned int origin)
 {
-    int reverse = 0;
-    for (int temp = origin; temp > 0; temp /= 10)
+    unsigned int reverse = 0;
+    for (unsigned int temp = origin; temp != 0; temp /= 10)
     {
         reverse = (reverse * 10) + temp % 10;
     }
     return reverse;
 }
 
-int reverse_add(int origin)
+void reverse_add(unsigned int * origin)
 {
-    return origin + GetReverse(origin);
+    *origin += GetReverse(*origin);
 }
 
-int is_palindrome(int num) 
+int is_palindrome(unsigned int num)
 {  
     if (num == GetReverse(num)) return 1;
     else return 0;    
@@ -26,11 +26,12 @@ void main()
 {
     int r = 0;
     unsigned int p = 0;
+    unsigned int * pPointer = &p;
     printf("Please enter a number : "); scanf("%d", &p);
 
     while (r++ < 1000)
     {
-        p = reverse_add(p);
+        reverse_add(pPointer);
         if (is_palindrome(p)) break;
     }
    
