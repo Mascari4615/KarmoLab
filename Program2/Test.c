@@ -1,0 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void main()
+{
+    long double d;
+    scanf("%le", &d);
+    printf("%lf", d);
+}
