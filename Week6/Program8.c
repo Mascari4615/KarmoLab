@@ -3,7 +3,7 @@
 
 int testPerfect(int* number);
 void printFactors(int* number);
-void GetFactors(int number, int* factors);
+int* GetFactors(int number);
 
 void main()
 {
@@ -23,16 +23,16 @@ void main()
 
 int testPerfect(int* number)
 {
-	int factors[100] = { NULL, };
-	GetFactors(*number, factors);
+	int* factors = GetFactors(*number);
 
 	int sum = 0;
 	for (int i = 1; i < 100; i++)
 	{
 		if (factors[i] == NULL) break;
+		printf("%d ", factors[i]);
 		sum += factors[i];
 	}
-
+	printf("## %d ##", sum);
 	if (sum == *number) return 1;
 	else return 0;
 }
@@ -41,8 +41,7 @@ void printFactors(int* number)
 {
 	if (testPerfect(number))
 	{
-		int factors[100] = { NULL, };
-		GetFactors(*number, factors);
+		int* factors = GetFactors(*number);
 
 		printf("%d:", *number);
 		for (int i = 1; i < 100; i++)
@@ -57,8 +56,9 @@ void printFactors(int* number)
 	}
 }
 
-void GetFactors(int number, int* factors)
+int* GetFactors(int number)
 {
+	int factors[100] = { NULL, };
 	int index = -1;
 	int lastFactor = 0;
 	for (int i = 1; i <= number / 2; i++)
@@ -68,7 +68,10 @@ void GetFactors(int number, int* factors)
 			if (i == lastFactor) break;
 
 			factors[++index] = i;
-			factors[++index] = number / i;
+			if (i != number / i)
+			{
+				factors[++index] = number / i;
+			}
 			lastFactor = number / i;
 		}
 	}
@@ -85,7 +88,8 @@ void GetFactors(int number, int* factors)
 				factors[k] = temp;
 			}
 		}
+		printf("%d ", factors[j]);
 	}
-
+	printf("-----");
 	return factors;
 }

@@ -16,10 +16,12 @@ void main()
 	int day = atoi(birthday[1]);
 	int year = atoi(birthday[2]);
 
-	printf("Welcome to the numerogy report for %d/%d/%d :\n", month, day, year);
-
 	int num = validate_date(year, month, day);
-	if (num) crunch_date(num);
+	if (num) 
+	{ 
+		printf("Welcome to the numerogy report for %d/%d/%d :\n", month, day, year);
+		crunch_date(num); 
+	}
 
 	return 0;
 }
