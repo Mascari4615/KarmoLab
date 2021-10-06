@@ -1,15 +1,16 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void get_date(char* birthday[]);
 int validate_date(int year, int month, int day);
 void crunch_date(int number);
 void show_numerology(int number);
 
-void main()
+int main()
 {
-	char* birthday[3] = {NULL,};
+	char* birthday[3] = { NULL, };
 	get_date(birthday);
 
 	int month = atoi(birthday[0]);
@@ -17,18 +18,19 @@ void main()
 	int year = atoi(birthday[2]);
 
 	int num = validate_date(year, month, day);
-	if (num) 
-	{ 
+	if (num)
+	{
 		printf("Welcome to the numerogy report for %d/%d/%d :\n", month, day, year);
-		crunch_date(num); 
+		crunch_date(num);
 	}
 
 	return 0;
 }
 
+// 생년월일을 입력받아 년도, 월, 일로 구분하여 처리
 void get_date(char* birthday[])
 {
-	char input[100];
+	char input[15];
 	printf("Enter the birth date (mm / dd / yyyy)");
 	scanf("%[^\n]", input);
 
@@ -53,30 +55,30 @@ int validate_date(int year, int month, int day)
 	int lastDayOfMonth;
 	switch (month)
 	{
-		case 2:
-			if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
-				lastDayOfMonth = 29;
-			else
-				lastDayOfMonth = 28;
-			break;
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			lastDayOfMonth = 30;
-			break;
-		case 1:
-		case 3:
-		case 5:
-		case 7:
-		case 8:
-		case 10:
-		case 12:
-			lastDayOfMonth = 31;
-			break;
-		default:
-			printf("Bad month : %d\n", month);
-			return 0;
+	case 2:
+		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+			lastDayOfMonth = 29;
+		else
+			lastDayOfMonth = 28;
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		lastDayOfMonth = 30;
+		break;
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		lastDayOfMonth = 31;
+		break;
+	default:
+		printf("Bad month : %d\n", month);
+		return 0;
 	}
 
 	if (day <= 0 || day > lastDayOfMonth)
