@@ -10,14 +10,18 @@ void show_numerology(int number);
 
 int main()
 {
+	// 문자 포인터 배열
 	char* birthday[3] = { NULL, };
 	get_date(birthday);
 
+	// 문자열을 정수로 바꿔주는 함수를 이용해 변수를 초기화합니다.
 	int month = atoi(birthday[0]);
 	int day = atoi(birthday[1]);
 	int year = atoi(birthday[2]);
 
 	int num = validate_date(year, month, day);
+
+	// 반환 받은 값이 0이 아니라면, 즉 올바르게 입력되었다면
 	if (num)
 	{
 		printf("Welcome to the numerogy report for %d/%d/%d :\n", month, day, year);
@@ -35,52 +39,56 @@ void get_date(char* birthday[])
 	scanf("%[^\n]", input);
 
 	int i = 0;
+	// 입력받은 값을 " / " 로 나누고, 반환 받은 문자열의 주소값을 문자 포인터 배열에 저장합니다.
 	char* result = strtok(input, " / ");
 	while (result != NULL)
 	{
-		birthday[i] = result;
-		i++;
+		birthday[i++] = result;
 		result = strtok(NULL, " / ");
 	}
 }
 
+// 날짜가 올바르게 입력되었는지 확인하고, 그렇다면 모두 더한 값, 아니라면 0을 반환합니다.
 int validate_date(int year, int month, int day)
 {
+	// 1880년부터 2280년까지로 제한한다는 문제 조건
 	if (year < 1880 || year > 2280)
 	{
 		printf("Bad year : %d\n", year);
 		return 0;
 	}
 
+	// 입력된 달의 마지막 날짜를 구하고, 동시에 입력된 달이 올바른지 확인
 	int lastDayOfMonth;
 	switch (month)
 	{
-	case 2:
-		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
-			lastDayOfMonth = 29;
-		else
-			lastDayOfMonth = 28;
-		break;
-	case 4:
-	case 6:
-	case 9:
-	case 11:
-		lastDayOfMonth = 30;
-		break;
-	case 1:
-	case 3:
-	case 5:
-	case 7:
-	case 8:
-	case 10:
-	case 12:
-		lastDayOfMonth = 31;
-		break;
-	default:
-		printf("Bad month : %d\n", month);
-		return 0;
+		case 2:
+			if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+				lastDayOfMonth = 29;
+			else
+				lastDayOfMonth = 28;
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			lastDayOfMonth = 30;
+			break;
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			lastDayOfMonth = 31;
+			break;
+		default:
+			printf("Bad month : %d\n", month);
+			return 0;
 	}
 
+	// 입력된 날짜가 올바른지 확인
 	if (day <= 0 || day > lastDayOfMonth)
 	{
 		printf("Bad day for %d/%d : %d\n", month, year, day);
@@ -91,6 +99,7 @@ int validate_date(int year, int month, int day)
 	return number;
 }
 
+// 넘겨받은 숫자의 모든 자릿수를 10보다 작아질 때까지 합칩니다.
 void crunch_date(int number)
 {
 	int nSum = 0;
@@ -108,6 +117,7 @@ void crunch_date(int number)
 	show_numerology(nSum);
 }
 
+// 넘겨받은 숫자에 따른 운세를 출력합니다.
 void show_numerology(int number)
 {
 	printf(":%d: ", number);
