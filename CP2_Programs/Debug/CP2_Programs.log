@@ -1,3 +1,0 @@
-﻿  Program1.c
-D:\CP2_Programs\CP2_Programs\Program1.c(77,2): warning C4098: 'main': 'void' 함수에서 값을 반환하고 있습니다.
-  CP2_Programs.vcxproj -> D:\CP2_Programs\Debug\CP2_Programs.exe
