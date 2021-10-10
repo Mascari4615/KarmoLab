@@ -8,7 +8,7 @@
 int testPerfect(int number, int* factors);
 void printFactors(int number);
 
-void main()
+int main()
 {
 	int n = 0, input = 0; // 반복 횟수, 입력값
 	printf("How many numbers would you like to test? ");
