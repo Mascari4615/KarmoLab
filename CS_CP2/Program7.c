@@ -8,12 +8,12 @@ int validate_date(int year, int month, int day);
 void crunch_date(int number);
 void show_numerology(int number);
 
-int main()
+void main()
 {
-	// 문자 포인터 배열
-	char* birthday[3] = { NULL, };
+	// 문자 포인터 (문자열) 배열
+	char* birthday[3] = { "", "", "" };
 	get_date(birthday);
-
+	
 	// 문자열을 정수로 바꿔주는 함수를 이용해 변수를 초기화합니다.
 	int month = atoi(birthday[0]);
 	int day = atoi(birthday[1]);
@@ -27,23 +27,22 @@ int main()
 		printf("Welcome to the numerogy report for %d/%d/%d :\n", month, day, year);
 		crunch_date(num);
 	}
-
-	return 0;
 }
 
 // 생년월일을 입력받아 년도, 월, 일로 구분하여 처리
 void get_date(char* birthday[])
 {
 	char input[15];
-	printf("Enter the birth date (mm / dd / yyyy)");
+	printf("Enter the birth date (mm / dd / yyyy) : ");
 	scanf("%[^\n]", input);
 
-	int i = 0;
 	// 입력받은 값을 " / " 로 나누고, 반환 받은 문자열의 주소값을 문자 포인터 배열에 저장합니다.
 	char* result = strtok(input, " / ");
 	while (result != NULL)
 	{
-		birthday[i++] = result;
+		birthday = result;
+		birthday++;
+		printf("%s", birthday);
 		result = strtok(NULL, " / ");
 	}
 }
