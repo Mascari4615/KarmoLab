@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-Program7",
+      "appliesTo": "CS_CP2/Program7.c",
+      "type": "launch"
+    }
+  ]
+}

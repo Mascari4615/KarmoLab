@@ -54,6 +54,9 @@ int validate_date(int year, int month, int day)
 	if (year < 1880 || year > 2280)
 	{
 		printf("Bad year : %d\n", year);
+		null 포인터 저장
+			0은 다 쓸 수 잇음
+			gets s 문자열
 		return 0;
 	}
 
