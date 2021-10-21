@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdbool.h>
-#define GRIDSIZE 18
+#define GRIDSIZE 30
 
 // Reset the two-dimensional array
 void clearGrid(int(*grid)[GRIDSIZE])
@@ -80,6 +80,7 @@ int countNeighbors(int(*grid)[GRIDSIZE], int row, int col)
 	bool isColMin = col == 0;
 	bool isColMax = col == GRIDSIZE - 1;
 
+	// 윗 행 검사
 	if (!isRowMin)
 	{
 		if (!isColMin) if (grid[row - 1][col - 1]) count++;
@@ -87,15 +88,17 @@ int countNeighbors(int(*grid)[GRIDSIZE], int row, int col)
 		if (!isColMax) if (grid[row - 1][col + 1]) count++;
 	}
 
-	if (!isRowMax)
-	{
-		if (!isColMax) if (grid[row + 1][col + 1]) count++;
-		if (grid[row + 1][col]) count++;
-		if (!isColMin) if (grid[row + 1][col - 1]) count++;
-	}
-
+	// 가운데 행 검사
 	if (!isColMax) if (grid[row][col + 1]) count++;
 	if (!isColMin) if (grid[row][col - 1]) count++;
+
+	// 오른쪽 행 검사
+	if (!isRowMax)
+	{
+		if (!isColMin) if (grid[row + 1][col - 1]) count++;
+		if (grid[row + 1][col]) count++;
+		if (!isColMax) if (grid[row + 1][col + 1]) count++;	
+	}
 
 	return count;
 }
@@ -118,7 +121,8 @@ void genNextGrid(int(*grid)[GRIDSIZE])
 			grid[i][j] = nextGen[i][j];
 }
 
-void main() {
+void main() 
+{
 	int board[GRIDSIZE][GRIDSIZE];
 	char choice = "";
 	int x = 1;
