@@ -31,7 +31,7 @@ int main()
 // 왼발 오르기 시도 (매개변수로 오를 칸 수 받음, 1 ~ 3칸)
 void TryLeftStep(char* originStr, int remainStairs, int stepAmount)
 {
-	char* totalStr = malloc((strlen(originStr) + 4) * sizeof(char));
+	char* totalStr = malloc(strlen(originStr) + 4);
 	sprintf(totalStr, "%s%dL ", originStr, stepAmount);
 
 	remainStairs -= stepAmount;
@@ -44,7 +44,7 @@ void TryLeftStep(char* originStr, int remainStairs, int stepAmount)
 // 오른발 오르기 시도 (오른발은 1칸 고정)
 void TryRightStep(char* originStr, int remainStairs)
 {
-	char* totalStr = malloc((strlen(originStr) + 4) * sizeof(char));
+	char* totalStr = malloc(strlen(originStr) + 4);
 	sprintf(totalStr, "%s1R ", originStr);
 
 	if (--remainStairs > 0)

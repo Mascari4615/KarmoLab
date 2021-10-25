@@ -39,29 +39,23 @@ void setup(int(*board)[GRIDSIZE], char which)
 
 void displayGrid(int(*grid)[GRIDSIZE])
 {
-	int x, r, c;
-
-	printf("     ");
-	for (x = 1; x <= GRIDSIZE; x++)
+	printf("  ");
+	for (int x = 1; x <= GRIDSIZE; x++)
 	{
 		if ((x / 10) != 0) printf("%d", x / 10);
 		else printf(" ");
 	}
 
-	printf("\n");
-	printf("     ");
+	printf("\n  ");
+	for (int x = 1; x <= GRIDSIZE; x++) printf("%d", x % 10);
 
-	for (x = 1; x <= GRIDSIZE; x++) printf("%d", x % 10);
 	printf("\n");
-
-	for (r = 0; r < GRIDSIZE; r++)
+	for (int r = 0; r < GRIDSIZE; r++)
 	{
 		printf("%d", r + 1);
+		if (r + 1 < 10) printf(" ");
 
-		if (r + 1 < 10) printf("  ");
-		else printf(" ");
-
-		for (c = 0; c < GRIDSIZE; c++)
+		for (int c = 0; c < GRIDSIZE; c++)
 		{
 			if (grid[r][c] == 1) printf("*");
 			else printf(" ");
@@ -97,7 +91,7 @@ int countNeighbors(int(*grid)[GRIDSIZE], int row, int col)
 	{
 		if (!isColMin) if (grid[row + 1][col - 1]) count++;
 		if (grid[row + 1][col]) count++;
-		if (!isColMax) if (grid[row + 1][col + 1]) count++;	
+		if (!isColMax) if (grid[row + 1][col + 1]) count++;
 	}
 
 	return count;
@@ -121,10 +115,10 @@ void genNextGrid(int(*grid)[GRIDSIZE])
 			grid[i][j] = nextGen[i][j];
 }
 
-void main() 
+void main()
 {
 	int board[GRIDSIZE][GRIDSIZE];
-	char choice = "";
+	char choice;
 	int x = 1;
 
 	do printf("Start with the (q)ueen bee shuttle or the (g)lider pattern? ");
@@ -138,7 +132,7 @@ void main()
 		displayGrid(board);
 		genNextGrid(board);
 		printf("\n(q)uit or any other key + ENTER to continue: ");
-		fflush(stdin);
+		while (getchar() != '\n'); // VS2015 이상 버전에서 fflush(stdin)는 동작되지 않음, Why? 비표준
 		scanf("%c", &choice);
 	} while (choice != 'q');
 }
