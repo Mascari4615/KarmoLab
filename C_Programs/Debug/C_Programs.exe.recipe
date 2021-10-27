@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\MyProgram\Ttmdacl_Programs\Debug\C_Programs.exe</FullPath>
+      <FullPath>D:\C_Programs\Debug\C_Programs.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

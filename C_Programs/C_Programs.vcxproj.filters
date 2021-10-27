@@ -18,5 +18,11 @@
     <ClCompile Include="Bit.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Statistics.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DarkKnight.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

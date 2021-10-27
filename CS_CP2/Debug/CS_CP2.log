@@ -1,2 +1,11 @@
+<<<<<<< Updated upstream
 ﻿  Program10.c
   CS_CP2.vcxproj -> D:\MyProgram\Ttmdacl_Programs\Debug\CS_CP2.exe
+=======
+﻿  Program5.c
+D:\C_Programs\CS_CP2\Program5.c(28,19): warning C4013: 'malloc'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+D:\C_Programs\CS_CP2\Program5.c(31,6): warning C4013: 'free'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+D:\C_Programs\CS_CP2\Program5.c(28,1): warning C4047: '초기화 중': 'int *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+  LINK : D:\C_Programs\Debug\CS_CP2.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
+  CS_CP2.vcxproj -> D:\C_Programs\Debug\CS_CP2.exe
+>>>>>>> Stashed changes
