@@ -95,6 +95,19 @@ int countNeighbors(int(*grid)[GRIDSIZE], int row, int col)
 	}
 
 	return count;
+
+	/*
+	for (int colt = col - 1; colt <= col + 1; colt++)
+	{
+		if (colt == -1 || colt == GRIDSIZE) continue;
+
+		for (int rowt = row - 1; rowt <= row + 1; rowt++)
+		{
+			if (rowt == -1 || rowt == GRIDSIZE) continue;
+
+			if (grid[rowt][colt]) count++;
+		}
+	}*/
 }
 
 // Generate the next generation of the simulation
