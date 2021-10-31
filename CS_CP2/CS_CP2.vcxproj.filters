@@ -51,5 +51,8 @@
     <ClCompile Include="Program12.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Program13.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
