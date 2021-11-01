@@ -23,7 +23,7 @@ int main()
 	for (int i = 0; i < n; i++)
 	{
 		scanf("%s", temp);
-		inputs[i] = (char*)malloc(sizeof(char) * 100);
+		inputs[i] = (char*)malloc(sizeof(char) * strlen(temp) + 1);
 		strcpy(inputs[i], temp);
 	}
 

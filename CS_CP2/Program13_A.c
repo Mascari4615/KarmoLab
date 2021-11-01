@@ -20,7 +20,7 @@ int main()
 	{
 		scanf("%s", temp);
 		// 문자열도 malloc 함수를 이용해 동적 할당
-		inputs[i] = (char*)malloc(sizeof(char) * strlen(temp));
+		inputs[i] = (char*)malloc(sizeof(char) * strlen(temp) + 1);
 		strcpy(inputs[i], temp);
 	}
 
@@ -44,7 +44,10 @@ int main()
 		// 문자열에 더 이상 접근하지 않기 때문에, free 함수를 이용해 할당 해제
 		free(inputs[i]);
 	}
-
+	for (int i = 0; i < n; i++)
+	{
+		
+	}
 	// 동적 할당한 모든 문자열을 할당 해제 한 이후, 이중 포인터도 할당 해제
 	free(inputs);
 	return 0;
