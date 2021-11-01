@@ -1,29 +1,26 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <string.h> // 명시하지 않아도 실행되는 이유가 컴파일러가 자동으로 추가해 준다고함.
-#include <malloc.h> // 위와 다르게 이건 명시하지 않으면 우연찮게 실행되는 거라던 대.. 
-					// 더 공부해 봐야겠음.. 별개로 <stdlib.h> 에도 malloc, free 함수가 정의돼 있음
+#include <string.h>
+#include <malloc.h>
 
 int IsCouple(char* string);
-void SortString(char* string);
-void FormatString(char* string);
-void KillCouple(char* string);
 
-// 내 스타일대로 끄적여 본 것
-int main()
+// char* inputs[n]로 쓰고 싶었지만, VS에서는 가변 길이 배열(VLA)을 지원하지 않았음.. 
+// 때문에 이중 포인터를 사용하고, malloc 함수를 이용해 동적 할당하는 방법 사용
+
+void main()
 {
-	int n = 1;
-	printf("Enter N : "); scanf("%d", &n);
+	int n;
+	printf("Enter N : ");
+	scanf("%d", &n);
 
-	// char* inputs[n]로 쓰고 싶었지만, VS에서는 가변 길이 배열(VLA)을 지원하지 않았음.. 
-	// 때문에 이중 포인터를 사용하고, malloc 함수를 이용해 동적 할당하는 방법 사용
-	char** inputs = (char**)malloc(sizeof(char*) * n);
-	char temp[100] = { NULL, };
+	char** inputs, temp[100] = { NULL, };
+	while ((inputs = malloc(sizeof(char*) * n)) == NULL);
 
 	for (int i = 0; i < n; i++)
 	{
 		scanf("%s", temp);
-		inputs[i] = (char*)malloc(sizeof(char) * strlen(temp) + 1);
+		while ((inputs[i] = malloc(strlen(temp) + 1)) == NULL);
 		strcpy(inputs[i], temp);
 	}
 
@@ -31,94 +28,49 @@ int main()
 
 	for (int i = 0; i < n; i++)
 	{
-		if (IsCouple(inputs[i]))
-			printf("Good\n");
+		if (IsCouple(inputs[i])) 
+			printf("Good");
 		else
 		{
-			FormatString(inputs[i]);
-			printf("%s\n", inputs[i]);
+			// 짝이 없는 알파벳 거꾸로 출력
+			for (int j = strlen(inputs[i]); j >= 0; j--) 
+				if (inputs[i][j] != '#')
+					printf("%c", inputs[i][j]);
 		}
-		free(inputs[i]);
+		printf("\n");
+
+		// 문자열을 더 사용하지 않기 때문에 할당 해제
+		free(inputs[i]); 
 	}
 
-	free(inputs);
-	return 0;
+	// 이중 포인터도 할당 해제
+	free(inputs); 
 }
 
-int IsCouple(char* string)
+// 매개변수로 받은 문자열 내 알파벳들이 모두 짝이 있는지 확인
+int IsCouple(char* string) 
 {
-	int dead = 0;
-	char* temp = malloc(strlen(string) + 1);
-	strcpy(temp, string);
+	int coupleCount = 0;
 
-	KillCouple(temp);
-
-	for (int i = 0; i < strlen(string); i++)
-		if (temp[i] == '#')
-			dead++;
-
-	free(temp);
-	return strlen(string) == dead;
-}
-
-void KillCouple(char* string)
-{
-	for (int i = 0; i < strlen(string) - 1; i++)
+	// 짝이 있는 알파벳을 찾아 #으로 바꾸고, coupleCount++
+	for (int i = 0; i < strlen(string) - 1; i++) 
 	{
-		if (string[i] == '#') continue;
+		if (string[i] == '#')
+			continue;
 
 		for (int j = i + 1; j < strlen(string); j++)
 		{
-			if (string[j] == '#') continue;
+			if (string[i] == '#')
+				continue;
 
 			if (string[i] == string[j])
 			{
-				string[i] = '#';
-				string[j] = '#';
+				string[i] = string[j] = '#';
+				coupleCount++;
 				break;
 			}
 		}
 	}
-}
 
-void FormatString(char* string)
-{
-	int dead = 0;
-	char* temp = malloc(strlen(string) + 1);
-	strcpy(temp, string);
-
-	KillCouple(temp);
-	SortString(temp);
-
-	for (int i = 0; i < strlen(string); i++)
-	{
-		string[i] = ' ';
-		if (temp[i] == '#')
-			dead++;	
-	}
-
-	int i = 0;
-	for (int j = 0; j < strlen(string); j++)
-		if (temp[j] != '#')
-			string[i++] = temp[j];
-	
-	free(temp);
-}
-
-void SortString(char* string)
-{
-	char temp;
-
-	for (int i = 0; i < strlen(string) - 1; i++)
-	{
-		for (int j = i + 1; j < strlen(string); j++)
-		{
-			if (string[i] > string[j])
-			{
-				temp = string[i];
-				string[i] = string[j];
-				string[j] = temp;
-			}
-		}
-	}
+	return strlen(string) == coupleCount * 2;
 }
