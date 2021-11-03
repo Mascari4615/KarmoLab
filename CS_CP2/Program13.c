@@ -4,7 +4,7 @@
 #include <malloc.h>
 
 int IsCouple(char* string);
-int KillCouple(char* string);
+int KillAllCouple(char* string);
 void SortString(char* string);
 
 // char* inputs[n]로 쓰고 싶었지만, VS에서는 가변 길이 배열(VLA)을 지원하지 않았음.. 
@@ -30,7 +30,7 @@ void main()
 
 	for (i = 0; i < n; i++)
 	{
-		if (KillCouple(inputs[i]))
+		if (KillAllCouple(inputs[i]))
 			printf("Good");
 		else
 		{
@@ -51,7 +51,7 @@ void main()
 	free(inputs);
 }
 
-// 매개변수로 받은 문자열 내 짝인 알파벳이 있는지 확인
+// 매개변수로 받은 문자열 안에 짝인 알파벳이 있는지 확인
 int IsCouple(char* string)
 {
 	int coupleCount = 0, i, j;
@@ -65,7 +65,9 @@ int IsCouple(char* string)
 	return 0;
 }
 
-int KillCouple(char* string)
+// 매개변수로 받은 문자열 안에 있는 모든 알파벳 쌍을 #으로 변경
+// 문자열이 모두 #이 되면 1, 아니면 0 반환
+int KillAllCouple(char* string)
 {
 	int coupleCount = 0, i, j;
 
