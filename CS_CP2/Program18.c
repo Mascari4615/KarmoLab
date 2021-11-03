@@ -68,10 +68,9 @@ void Find(char** inputStrings, char* word)
 
 void TryN(char** inputStrings, char* word, int c, int r)
 {
-	int wordLength = sizeof(word) / sizeof(char);
-	if (c - wordLength < 0) return;
+	if (c - strlen(word) < 0) return;
 
-	for (int i = 0; i < wordLength; i++)
+	for (int i = 0; i < strlen(word); i++)
 	{
 		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
 		c--;
@@ -82,10 +81,9 @@ void TryN(char** inputStrings, char* word, int c, int r)
 
 void TryNE(char** inputStrings, char* word, int c, int r)
 {
-	int wordLength = sizeof(word) / sizeof(char);
-	if (c - wordLength < 0 || 11 - (r + wordLength) < 0) return;
+	if (c - strlen(word) < 0 || 11 - (r + strlen(word)) < 0) return;
 
-	for (int i = 0; i < wordLength; i++)
+	for (int i = 0; i < strlen(word); i++)
 	{
 		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
 		c--;
@@ -97,7 +95,7 @@ void TryNE(char** inputStrings, char* word, int c, int r)
 
 void TryE(char** inputStrings, char* word, int c, int r)
 {
-	int wordLength = sizeof(word) / sizeof(char);
+	int wordLength = strlen(word);
 	if (11 - (r + wordLength) < 0) return;
 
 	for (int i = 0; i < wordLength; i++)
@@ -111,7 +109,7 @@ void TryE(char** inputStrings, char* word, int c, int r)
 
 void TrySE(char** inputStrings, char* word, int c, int r)
 {
-	int wordLength = sizeof(word) / sizeof(char);
+	int wordLength = strlen(word);
 	if (8 - (r + wordLength) < 0 || 11 - (r + wordLength) < 0) return;
 
 	for (int i = 0; i < wordLength; i++)
@@ -126,7 +124,7 @@ void TrySE(char** inputStrings, char* word, int c, int r)
 
 void TryS(char** inputStrings, char* word, int c, int r)
 {
-	int wordLength = sizeof(word) / sizeof(char);
+	int wordLength = strlen(word);
 	if (8 - (r + wordLength) < 0) return;
 
 	for (int i = 0; i < wordLength; i++)
@@ -140,7 +138,7 @@ void TryS(char** inputStrings, char* word, int c, int r)
 
 void TrySW(char** inputStrings, char* word, int c, int r)
 {
-	int wordLength = sizeof(word) / sizeof(char);
+	int wordLength = strlen(word);
 	if (r - wordLength < 0|| 8 - (r + wordLength) < 0) return;
 
 	for (int i = 0; i < wordLength; i++)
@@ -155,7 +153,7 @@ void TrySW(char** inputStrings, char* word, int c, int r)
 
 void TryW(char** inputStrings, char* word, int c, int r)
 {
-	int wordLength = sizeof(word) / sizeof(char);
+	int wordLength = strlen(word);
 	if (r - wordLength < 0) return;
 
 	for (int i = 0; i < wordLength; i++)
@@ -169,7 +167,7 @@ void TryW(char** inputStrings, char* word, int c, int r)
 
 void TryNW(char** inputStrings, char* word, int c, int r)
 {
-	int wordLength = sizeof(word) / sizeof(char);
+	int wordLength = strlen(word);
 	if (c - wordLength < 0 || r - wordLength < 0) return;
 
 	for (int i = 0; i < wordLength; i++)
