@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void Find(char** inputStrings, char* word);
+void Find(char** inputStrings, int inputLength, char* word);
 void TryN(char** inputStrings, char* word, int c, int r);
 void TryNE(char** inputStrings, char* word, int c, int r);
 void TryE(char** inputStrings, char* word, int c, int r);
@@ -39,15 +39,17 @@ void main()
 
 	for (int i = 0; i < wordLength; i++)
 	{
-		Find(inputStrings, inputWords[i]);
+		Find(inputStrings, inputLength, inputWords[i]);
 	}
+
+	printf("%d %d\n", inputLength, stringLength);
+
 }
 
-void Find(char** inputStrings, char* word)
+void Find(char** inputStrings, int inputLength, char* word)
 {
-	int inputLength = 8;
-	int stringLength = 11;
-	// printf("%d %d", inputLength, stringLength);
+	int stringLength = strlen(inputStrings[0]);
+	printf("___ %d %d %d %d %d\n", strlen(inputStrings), inputLength, sizeof(inputStrings[0]), stringLength, sizeof(word));
 	for (int c = 0; c < inputLength; c++)
 	{
 		for (int r = 0; r < stringLength; r++)
@@ -59,7 +61,7 @@ void Find(char** inputStrings, char* word)
 			TryE(inputStrings, word, c, r);
 			TrySE(inputStrings, word, c, r);
 			TryS(inputStrings, word, c, r);
-			TrySW(inputStrings, word, c, r);
+			TrySW(inputStrings, word, c, r);  
 			TryW(inputStrings, word, c, r);
 			TryNW(inputStrings, word, c, r);
 		}
