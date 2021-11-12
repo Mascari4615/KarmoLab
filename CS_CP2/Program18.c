@@ -4,22 +4,22 @@
 #include <string.h>
 
 void Find(char** inputStrings, int inputLength, char* word);
-void TryN(char** inputStrings, char* word, int c, int r);
-void TryNE(char** inputStrings, char* word, int c, int r);
-void TryE(char** inputStrings, char* word, int c, int r);
-void TrySE(char** inputStrings, char* word, int c, int r);
-void TryS(char** inputStrings, char* word, int c, int r);
-void TrySW(char** inputStrings, char* word, int c, int r);
-void TryW(char** inputStrings, char* word, int c, int r);
-void TryNW(char** inputStrings, char* word, int c, int r);
+void TryN(char** inputStrings, char* word, int r, int c);
+void TryNE(char** inputStrings, char* word, int r, int c);
+void TryE(char** inputStrings, char* word, int r, int c);
+void TrySE(char** inputStrings, char* word, int r, int c);
+void TryS(char** inputStrings, char* word, int r, int c);
+void TrySW(char** inputStrings, char* word, int r, int c);
+void TryW(char** inputStrings, char* word, int r, int c);
+void TryNW(char** inputStrings, char* word, int r, int c);
 
 void main()
 {
-	int inputLength, stringLength; // 1이상 40이하
+	int i, inputLength, stringLength; // 1이상 40이하
 	scanf("%d %d", &inputLength, &stringLength);
 
 	char** inputStrings = (char**)malloc(sizeof(char*) * inputLength);
-	for (int i = 0; i < inputLength; i++)
+	for (i = 0; i < inputLength; i++)
 	{
 		inputStrings[i] = (char*)malloc(sizeof(char) * stringLength + 1);
 		scanf("%s", inputStrings[i]);
@@ -30,154 +30,115 @@ void main()
 
 	char temp[100] = { NULL, };
 	char** inputWords = (char**)malloc(sizeof(char*) * inputLength);
-	for (int i = 0; i < wordLength; i++)
+	for (i = 0; i < wordLength; i++)
 	{
 		scanf("%s", temp);
+		for (int i = 0; i < strlen(temp); i++)
+		{
+			if (temp[i] >= 97)
+			{
+				temp[i] -= 32;
+			}
+		}
 		inputWords[i] = (char*)malloc(sizeof(char) * strlen(temp) + 1);
 		strcpy(inputWords[i], temp);
 	}
 
-	for (int i = 0; i < wordLength; i++)
+	for (i = 0; i < wordLength; i++)
 	{
 		Find(inputStrings, inputLength, inputWords[i]);
 	}
 
-	printf("%d %d\n", inputLength, stringLength);
-
+	for (i = 0; i < inputLength; i++)
+		free(inputStrings[i]);
+	free(inputStrings);
+	for (i = 0; i < wordLength; i++)
+		free(inputWords[i]);
+	free(inputWords);
 }
 
 void Find(char** inputStrings, int inputLength, char* word)
 {
-	int stringLength = strlen(inputStrings[0]);
-	printf("___ %d %d %d %d %d\n", strlen(inputStrings), inputLength, sizeof(inputStrings[0]), stringLength, sizeof(word));
-	for (int c = 0; c < inputLength; c++)
-	{
-		for (int r = 0; r < stringLength; r++)
-		{
-			if (inputStrings[c][r] != word[0]) continue;
+	int r, c, stringLength = strlen(inputStrings[0]);
 
-			TryN(inputStrings, word, c, r);
-			TryNE(inputStrings, word, c, r);
-			TryE(inputStrings, word, c, r);
-			TrySE(inputStrings, word, c, r);
-			TryS(inputStrings, word, c, r);
-			TrySW(inputStrings, word, c, r);  
-			TryW(inputStrings, word, c, r);
-			TryNW(inputStrings, word, c, r);
+	for (r = 0; r < inputLength; r++)
+	{
+		for (c = 0; c < stringLength; c++)
+		{
+			if (inputStrings[r][c] != word[0] && inputStrings[r][c] != word[0] + 32) continue;
+
+			TryN(inputStrings, word, r, c);
+			TryNE(inputStrings, word, r, c);
+			TryE(inputStrings, word, r, c);
+			TrySE(inputStrings, word, r, c);
+			TryS(inputStrings, word, r, c);
+			TrySW(inputStrings, word, r, c);  
+			TryW(inputStrings, word, r, c);
+			TryNW(inputStrings, word, r, c);
 		}
 	}
 }
 
-void TryN(char** inputStrings, char* word, int c, int r)
+void TryN(char** inputStrings, char* word, int r, int c)
 {
-	if (c - strlen(word) < 0) return;
-
+	if (r - (int)strlen(word) < 0) return;
 	for (int i = 0; i < strlen(word); i++)
-	{
-		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
-		c--;
-	}
-
-	printf("N %d %d\n", c, r);
+		if (inputStrings[r-i][c] != word[i] && inputStrings[r-i][c] != word[i] + 32) return;
+	printf("N %d %d\n", r+1, c+1);
 }
 
-void TryNE(char** inputStrings, char* word, int c, int r)
+void TryNE(char** inputStrings, char* word, int r, int c)
 {
-	if (c - strlen(word) < 0 || 11 - (r + strlen(word)) < 0) return;
+	if (r - (int)strlen(word) < 0 || 11 - (c + (int)strlen(word)) < 0) return;
+	for (int i = 0; i < (int)strlen(word); i++)
+		if (inputStrings[r-i][c+i] != word[i] && inputStrings[r-i][c+i] != word[i] + 32) return;
+	printf("NE %d %d\n", r+1, c+1);
+}
 
+void TryE(char** inputStrings, char* word, int r, int c)
+{
+	if (11 - (c + (int)strlen(word)) < 0) return;
 	for (int i = 0; i < strlen(word); i++)
-	{
-		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
-		c--;
-		r++;
-	}
-
-	printf("NE %d %d\n", c, r);
+		if (inputStrings[r][c+i] != word[i] && inputStrings[r][c+i] != word[i] + 32) return;
+	printf("E %d %d\n", r+1, c+1);
 }
 
-void TryE(char** inputStrings, char* word, int c, int r)
+void TrySE(char** inputStrings, char* word, int r, int c)
 {
-	int wordLength = strlen(word);
-	if (11 - (r + wordLength) < 0) return;
-
-	for (int i = 0; i < wordLength; i++)
-	{
-		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
-		r++;
-	}
-
-	printf("E %d %d\n", c, r);
+	if (8 - (c + (int)strlen(word)) < 0 || 11 - (c + (int)strlen(word)) < 0) return;
+	for (int i = 0; i < strlen(word); i++)
+		if (inputStrings[r+i][c+i] != word[i] && inputStrings[r+i][c+i] != word[i] + 32) return;
+	printf("SE %d %d\n", r+1, c+1);
 }
 
-void TrySE(char** inputStrings, char* word, int c, int r)
+void TryS(char** inputStrings, char* word, int r, int c)
 {
-	int wordLength = strlen(word);
-	if (8 - (r + wordLength) < 0 || 11 - (r + wordLength) < 0) return;
-
-	for (int i = 0; i < wordLength; i++)
-	{
-		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
-		c++;
-		r++;
-	}
-
-	printf("SE %d %d\n", c, r);
+	if (8 - (c + (int)strlen(word)) < 0) return;
+	for (int i = 0; i < strlen(word); i++)
+		if (inputStrings[r + i][c] != word[i] && inputStrings[r + i][c] != word[i] + 32) return;
+	printf("S %d %d\n", r+1, c+1);
 }
 
-void TryS(char** inputStrings, char* word, int c, int r)
+void TrySW(char** inputStrings, char* word, int r, int c)
 {
-	int wordLength = strlen(word);
-	if (8 - (r + wordLength) < 0) return;
-
-	for (int i = 0; i < wordLength; i++)
-	{
-		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
-		c++;
-	}
-
-	printf("S %d %d\n", c, r);
+	if (c - (int)strlen(word) < 0|| 8 - (c + (int)strlen(word)) < 0) return;
+	for (int i = 0; i < strlen(word); i++)
+		if (inputStrings[r+1][c-i] != word[i] && inputStrings[r+i][c-i] != word[i] + 32) return;
+	printf("SW %d %d\n", r+1, c+1);
 }
 
-void TrySW(char** inputStrings, char* word, int c, int r)
+void TryW(char** inputStrings, char* word, int r, int c)
 {
-	int wordLength = strlen(word);
-	if (r - wordLength < 0|| 8 - (r + wordLength) < 0) return;
-
-	for (int i = 0; i < wordLength; i++)
-	{
-		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
-		r--;
-		c++;
-	}
-
-	printf("SW %d %d\n", c, r);
+	if (c - (int)strlen(word) < 0) return;
+	for (int i = 0; i < strlen(word); i++)
+		if (inputStrings[r][c-i] != word[i] && inputStrings[r][c-i] != word[i] + 32) return;
+	printf("W %d %d\n", r+1, c+1);
 }
 
-void TryW(char** inputStrings, char* word, int c, int r)
+void TryNW(char** inputStrings, char* word, int r, int c)
 {
-	int wordLength = strlen(word);
-	if (r - wordLength < 0) return;
-
-	for (int i = 0; i < wordLength; i++)
-	{
-		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
-		r--;
-	}
-
-	printf("W %d %d\n", c, r);
-}
-
-void TryNW(char** inputStrings, char* word, int c, int r)
-{
-	int wordLength = strlen(word);
-	if (c - wordLength < 0 || r - wordLength < 0) return;
-
-	for (int i = 0; i < wordLength; i++)
-	{
-		if (inputStrings[c][r] != word[i] || inputStrings[c][r] != word[i] + 32) break;
-		r--;
-		c--;
-	}
-
-	printf("NW %d %d\n", c, r);
+	if (r - (int)strlen(word) < 0 || c - (int)strlen(word) < 0) return;
+	for (int i = 0; i < strlen(word); i++)
+		if (inputStrings[r-i][c-i] != word[i] && inputStrings[r-i][c-i] != word[i] + 32) return;
+	printf("NW %d %d\n", r+1, c+1);
 }
