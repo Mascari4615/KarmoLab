@@ -7,56 +7,52 @@ int IsAnagram(char* string1, char* string2);
 
 void main()
 {
-	int n;
+	int n, i;
+	char** inputs, temp[202] = { NULL, }, * string1, * string2;
 	scanf("%d", &n);
 	while (getchar() != '\n');
 
-	char** inputs = (char**)malloc(sizeof(char*) * n);
-	char temp[202] = { NULL, };
-
-	for (int i = 0; i < n; i++)
+	while ((inputs = (char**)malloc(sizeof(char*) * n)) == NULL);
+	for (i = 0; i < n; i++)
 	{
 		scanf("%[^\n]s", temp);
 		while (getchar() != '\n');
-		inputs[i] = (char*)malloc(sizeof(char) * strlen(temp) + 1);
+		while ((inputs[i] = (char*)malloc(sizeof(char) * strlen(temp) + 1)) == NULL);
 		strcpy(inputs[i], temp);
 	}
 
 	printf("\n");
 
-	char* string1, *string2;
-	for (int i = 0; i < n; i++)
+	for (i = 0; i < n; i++)
 	{
 		string1 = strtok(inputs[i], " ");
 		string2 = strtok(NULL, " ");
-		if (IsAnagram(string1, string2))
-			printf("%s and %s are anagrams.\n", string1, string2);
-		else
-			printf("%s and %s are NOT anagrams.\n", string1, string2);
+		printf("%s & %s are", string1, string2);
+		printf("%sanagrams.\n", IsAnagram(string1, string2) ? " " : " NOT ");
 	}
+
+	for (i = 0; i < n; i++)
+		free(inputs[i]);
+	free(inputs);
 }
 
 int IsAnagram(char* string1, char* string2)
 {
 	if (strlen(string1) != strlen(string2)) return 0;
 
-	char* tempStr1 = malloc(strlen(string1) + 1), *tempStr2 = malloc(strlen(string2) + 1);
-	strcpy(tempStr1, string1);
-	strcpy(tempStr2, string2);
-
-	int kill = 0;
-	for (int i = 0; i < strlen(tempStr1); i++)
+	int i, j, kill = 0;
+	for (i = 0; i < strlen(string1); i++)
 	{
-		for (int j = 0; j < strlen(tempStr2); j++)
+		for (j = 0; j < strlen(string2); j++)
 		{
-			if (tempStr1[i] == tempStr2[j])
+			if (string1[i] == string2[j])
 			{
-				tempStr2[j] = '#';
+				string2[j] = '#';
 				kill++;
 				break;
 			}
 		}
 	}
 
-	return strlen(tempStr1) - kill == 0;
+	return strlen(string1) - kill == 0;
 }

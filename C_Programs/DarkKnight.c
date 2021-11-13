@@ -1,115 +1,66 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-void printArray(int*, int, int);
-void multiplyArray(int**, int, int, int**, int, int);
-/**
-* 두 개의 행렬을 곱하는 프로그램.
-*/
-int main(void) {
+#include <string.h>
 
-	int oneRow, oneColumn, otherRow, otherColumn;
+int main() {
 
-	printf("첫 번째 행렬의 행 개수를 입력하세요: ");
-	scanf_s("%d", &oneRow);
-	printf("첫 번째 행렬의 열 개수를 입력하세요: ");
-	scanf_s("%d", &oneColumn);
-	printf("두 번째 행렬의 행 개수를 입력하세요: ");
-	scanf_s("%d", &otherRow);
-	printf("두 번째 행렬의 열 개수를 입력하세요: ");
-	scanf_s("%d", &otherColumn);
+	char** test, ** test2, string[100] = { 0, };
+	int c = 0, i;
 
-	if (oneColumn != otherRow) {
-		printf("두 행렬의 곱을 구할 수 없는 상황입니다.\n");
-		return 0;
-	}
+	printf("Case: "); 
+	scanf("%d%*c", &c);  // 몇개를 비교할지 정함
 
-	// 첫 번째 배열 생성
-	int** one = (int**)malloc(sizeof(int*) * oneRow);
-	for (int i = 0; i < oneRow; i++) {
-		one[i] = (int*)malloc(sizeof(int) * oneColumn);
-	}
-	// 두 번째 배열 생성
-	int** other = (int**)malloc(sizeof(int*) * otherRow);
-	for (int i = 0; i < otherRow; i++) {
-		other[i] = (int*)malloc(sizeof(int) * otherColumn);
-	}
-	// 첫 번째 배열에 값 할당
-	srand(time(NULL));
-	for (int i = 0; i < oneRow; i++) {
-		for (int j = 0; j < oneColumn; j++) {
-			one[i][j] = rand() % 9 + 1;
-		}
-	}
-	// 두 번째 배열에 값 할당
-	for (int i = 0; i < otherRow; i++) {
-		for (int j = 0; j < otherColumn; j++) {
-			other[i][j] = rand() % 9 + 1;
-		}
-	}
+	test = (char**)malloc(sizeof(char*) * c); // c의 값에 따라 이중 캐릭터포인터 선언
+	test2 = (char**)malloc(sizeof(char*) * c);
 
-	printArray(one, oneRow, oneColumn);
-	printf("----------\n");
-	printArray(other, otherRow, otherColumn);
-	printf("----두 행렬의 합은----\n");
-	multiplyArray(one, oneRow, oneColumn, other, otherRow, otherColumn);
-
-	for (int i = 0; i < oneRow; i++) {
-		free(one[i]);
-	}
-	free(one);
-	for (int i = 0; i < otherRow; i++) {
-		free(other[i]);
-	}
-	free(other);
-
-	return 0;
-}
-/**
-* 행렬(배열)을 출력하는 메소드.
-*/
-void printArray(int** one, int row, int column) {
-
-	for (int i = 0; i < row; i++) {
-		for (int j = 0; j < column; j++) {
-			printf("%d ", one[i][j]);
-		}
-		printf("\n");
-	}
-
-}
-/**
-* 두 행렬을 곱하는 메소드.
-*/
-void multiplyArray(int** one, int oneRow, int oneColumn, int** other, int otherRow, int otherColumn) {
-
-	// 두 행렬을 곱한 새 행렬을 저장할 새 배열
-	int newRow = oneRow; //2
-	int newColumn = otherColumn; //3
-	int** newOne = (int**)malloc(sizeof(int*) * newRow);
-	for (int i = 0; i < newRow; i++) {
-		newOne[i] = (int*)malloc(sizeof(int) * newColumn);
-	}
-
-	// 행렬 곱셈 값 저장
-	for (int i = 0; i < newRow; i++) 
+	for (i = 0; i < c; i++) 
 	{
-		for (int j = 0; j < newColumn; j++) 
+		gets(string);
+
+		// strchr은	문자열 내에 일치하는 문자가 있는지 검사하는 함수 찾으려는 문자가 있으면 해당 문자의 포인터 값 반환
+		printf("%s\n", (strchr(string, ' ') + 1));
+		test2[i] = (strchr(string, ' ') + 1); // strchr로 string에서 공백의 주소값에 + 1 하여 값을 가져옴
+		test[i] = strtok(string, " ");
+
+		/*
+		if (Anagram(test[i], test2))
+			printf("%s & %s are anagrams.", test[i], test2);
+		else printf("%s & %s are NOT anagrams.", test[i], test2);
+		*/
+		printf("\n%s", test[i]);
+		printf(" %s", test2[i]);	
+	}
+
+	for ( i = 0; i < c; i++)
+	{
+		printf("\n%s", test[i]);
+		printf(" %s", test2[i]);
+	}
+
+	free(test);
+	free(test2);
+}
+
+int Anagram(char* string1, char* string2) 
+{
+	int check1 = 0, len = strlen(string1), i, j;
+
+	for (i = 0; i < len; i++)
+	{
+		if (string1[i] != 1)
 		{
-			newOne[i][j] = 0;
-			for (int k = 0; k < oneColumn; k++)
+			for (j = 0; j < len; j++)
 			{
-				newOne[i][j] += one[i][k] * other[k][j];
+				if (string1[i] == string2[j] && string2[j] != 1)
+				{
+					string1[i] = string2[j] = 1;
+					check1 ++;
+					break;
+				}
 			}
 		}
 	}
 
-	printArray(newOne, newRow, newColumn);
-
-	for (int i = 0; i < newRow; i++) {
-		free(newOne[i]);
-	}
-	free(newOne);
-
+	return (check1 == strlen(string1));
 }
