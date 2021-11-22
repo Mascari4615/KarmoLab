@@ -1,4 +1,4 @@
-﻿  DarkKnight.c
-D:\MyProgram\Ttmdacl_Programs\C_Programs\DarkKnight.c(19,7): warning C4013: 'gets'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-D:\MyProgram\Ttmdacl_Programs\C_Programs\DarkKnight.c(48,30): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  C_Programs.vcxproj -> D:\MyProgram\Ttmdacl_Programs\x64\Debug\C_Programs.exe
+﻿  Test.c
+D:\C_Programs\C_Programs\Test.c(17,8): warning C4477: 'scanf' : 서식 문자열 '%d'에 'int *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int'입니다.
+D:\C_Programs\C_Programs\Test.c(18,8): warning C4477: 'scanf' : 서식 문자열 '%d'에 'int *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int'입니다.
+  C_Programs.vcxproj -> D:\C_Programs\x64\Debug\C_Programs.exe

@@ -54,9 +54,9 @@ void main()
 // 매개변수로 받은 문자열 안에 짝인 알파벳이 있는지 확인
 int IsCouple(char* string)
 {
-	int coupleCount = 0, i, j;
+	int i, j;
 
-	// 짝인 알파벳을 찾아 #으로 바꾸고 return
+	// 짝인 알파벳이 있는지 찾아 return
 	for (i = 0; i < strlen(string) - 1; i++)
 		for (j = i + 1; j < strlen(string); j++)
 			if (string[i] == string[j] && string[i] != '#')
@@ -71,8 +71,6 @@ int KillAllCouple(char* string)
 {
 	int coupleCount = 0, i, j;
 
-	while (IsCouple(string))
-	{
 		// 짝이 있는 알파벳을 찾아 #으로 바꾸고, coupleCount++
 		for (i = 0; i < strlen(string) - 1; i++)
 		{
