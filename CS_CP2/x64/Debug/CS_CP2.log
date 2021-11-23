@@ -1,4 +1,7 @@
 ﻿  Program18.c
-D:\C_Programs\CS_CP2\Program18.c(12,1): warning C4047: '초기화 중': 'char'의 간접 참조 수준이 'void *'과(와) 다릅니다.
-D:\C_Programs\CS_CP2\Program18.c(49,33): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  CS_CP2.vcxproj -> D:\C_Programs\x64\Debug\CS_CP2.exe
+D:\MyProgram\Ttmdacl_Programs\CS_CP2\Program18.c(13,1): warning C4047: '초기화 중': 'char'의 간접 참조 수준이 'void *'과(와) 다릅니다.
+D:\MyProgram\Ttmdacl_Programs\CS_CP2\Program18.c(51,27): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\MyProgram\Ttmdacl_Programs\CS_CP2\Program18.c(68,29): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\MyProgram\Ttmdacl_Programs\CS_CP2\Program18.c(68,61): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\MyProgram\Ttmdacl_Programs\CS_CP2\Program18.c(102,28): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CS_CP2.vcxproj -> D:\MyProgram\Ttmdacl_Programs\x64\Debug\CS_CP2.exe
