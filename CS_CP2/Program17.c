@@ -10,8 +10,9 @@ void main()
 	char* str = malloc(sizeof(char) * 256 + 1);
 	printf("Enter a string: ");
 	gets(str);
-
+	str = realloc(str, strlen(str) + 1);
 	printf("%d\n", word_count(str));
+	free(str);
 }
 
 int word_count(char* string)
@@ -23,6 +24,5 @@ int word_count(char* string)
 		count++;
 		ptr = strtok(NULL, " ");
 	}
-
 	return count;
 }

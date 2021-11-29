@@ -3,32 +3,32 @@
 #include <stdlib.h>
 #include <string.h>
 
-int IsAnagram(char* string1, char* string2);
+int IsAnagram(char* word1, char* word2);
 
 void main()
 {
 	int n, i;
-	char** inputs, temp[202] = { NULL, }, * string1, * string2;
+	char** inputs, * word1, * word2;
 	scanf("%d", &n);
 	while (getchar() != '\n');
 
-	while ((inputs = (char**)malloc(sizeof(char*) * n)) == NULL);
+	inputs = (char**)malloc(sizeof(char*) * n);
 	for (i = 0; i < n; i++)
 	{
-		scanf("%[^\n]s", temp);
+		inputs[i] = (char*)malloc(sizeof(char) * 202);
+		scanf("%[^\n]s", inputs[i]);
 		while (getchar() != '\n');
-		while ((inputs[i] = (char*)malloc(sizeof(char) * strlen(temp) + 1)) == NULL);
-		strcpy(inputs[i], temp);
+		inputs[i] = (char*)realloc(inputs[i], strlen(inputs[i]) + 1);
 	}
 
 	printf("\n");
 
 	for (i = 0; i < n; i++)
 	{
-		string1 = strtok(inputs[i], " ");
-		string2 = strtok(NULL, " ");
-		printf("%s & %s are", string1, string2);
-		printf("%sanagrams.\n", IsAnagram(string1, string2) ? " " : " NOT ");
+		word1 = strtok(inputs[i], " ");
+		word2 = strtok(NULL, " ");
+		printf("%s & %s are", word1, word2);
+		printf("%sanagrams.\n", IsAnagram(word1, word2) ? " " : " NOT ");
 	}
 
 	for (i = 0; i < n; i++)
@@ -36,23 +36,26 @@ void main()
 	free(inputs);
 }
 
-int IsAnagram(char* string1, char* string2)
+int IsAnagram(char* word1, char* word2)
 {
-	if (strlen(string1) != strlen(string2)) return 0;
+	if (strlen(word1) != strlen(word2)) return 0;
 
-	int i, j, kill = 0;
-	for (i = 0; i < strlen(string1); i++)
+	int i, j, kill = 0, check = 0;
+	for (i = 0; i < strlen(word1); i++)
 	{
-		for (j = 0; j < strlen(string2); j++)
+		check = 0;
+		for (j = 0; j < strlen(word2); j++)
 		{
-			if (string1[i] == string2[j])
+			if (word1[i] == word2[j])
 			{
-				string2[j] = '#';
+				word2[j] = '#';
 				kill++;
+				check = 1;
 				break;
 			}
 		}
+		if (check == 0) return 0;
 	}
 
-	return strlen(string1) - kill == 0;
+	return strlen(word1) - kill == 0;
 }
