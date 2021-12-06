@@ -101,7 +101,7 @@ void FindWord(inputData inputData, char* word, int r, int c, direction d)
 	int i, wordLength = strlen(word);
 	char curChar;
 
-	if (CantSearchThatDirection(inputData, r, c, wordLength, d))
+	if (CantSearchThatDirection(inputData, wordLength, r, c, d))
 		return;
 
 	for (i = 1; i < wordLength; i++)
