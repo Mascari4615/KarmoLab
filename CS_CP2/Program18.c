@@ -13,14 +13,14 @@ typedef struct Direction {
 	int horizontal;
 } direction;
 
-direction NW = { .vertical = -1, .horizontal = -1 };
-direction N = { .vertical = -1, .horizontal = 0 };
-direction NE = { .vertical = -1, .horizontal = 1 };
-direction E = { .vertical = 0, .horizontal = 1 };
-direction SE = { .vertical = 1, .horizontal = 1 };
-direction S = { .vertical = 1, .horizontal = 0 };
-direction SW = { .vertical = 1, .horizontal = -1 };
-direction W = { .vertical = 0, .horizontal = -1 };
+direction const NW = { .vertical = -1, .horizontal = -1 };
+direction const N = { .vertical = -1, .horizontal = 0 };
+direction const NE = { .vertical = -1, .horizontal = 1 };
+direction const E = { .vertical = 0, .horizontal = 1 };
+direction const SE = { .vertical = 1, .horizontal = 1 };
+direction const S = { .vertical = 1, .horizontal = 0 };
+direction const SW = { .vertical = 1, .horizontal = -1 };
+direction const W = { .vertical = 0, .horizontal = -1 };
 
 void Find(inputData inputData, char* word);
 void FindWord(inputData inputData, char* word, int r, int c, direction d);

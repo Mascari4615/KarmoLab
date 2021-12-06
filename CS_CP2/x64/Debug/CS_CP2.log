@@ -1,1 +1,4 @@
-﻿  CS_CP2.vcxproj -> D:\C_Programs\x64\Debug\CS_CP2.exe
+﻿  Program18.c
+D:\C_Programs\CS_CP2\Program18.c(54,53): warning C4013: 'strlen'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+D:\C_Programs\CS_CP2\Program18.c(31,9): warning C4101: 'j' :참조되지 않은 지역 변수입니다.
+  CS_CP2.vcxproj -> D:\C_Programs\x64\Debug\CS_CP2.exe
