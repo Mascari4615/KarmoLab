@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct InputData {
 	char** inputs;
@@ -121,35 +122,3 @@ int CantSearchThatDirection(inputData inputData, int wordLength, int r, int c, d
 		   (d.horizontal == -1 && c - wordLength < 0) ||
 		   (d.horizontal == 1 && inputData.maxCol - (c + wordLength) < 0);
 }
-
-//void Find(char** inputs, int maxRow, char* word);
-//
-//void Find(char** inputs, int m, char* word)
-//{
-//	int r, c, n = strlen(inputs[0]), ud, lr, i, wordLen = strlen(word);
-//
-//	for (r = 0; r < m; r++)
-//	{
-//		for (c = 0; c < n; c++)
-//		{
-//			for (ud = -1; ud <= 1; ud++)
-//			{
-//				if ((ud == -1 && r - wordLen < 0) || (ud == 1 && m - (r + wordLen) < 0))
-//					continue;
-//
-//				for (lr = -1; lr <= 1; lr++)
-//				{
-//					if ((lr == -1 && c - wordLen < 0) || (lr == 1 && n - (c + wordLen) < 0))
-//						continue;
-//
-//					for (i = 0; i < wordLen; i++)
-//						if (inputs[r + i * ud][c + i * lr] != word[i] && inputs[r + i * ud][c + i * lr] != word[i] + 32)
-//							goto EXIT;
-//
-//					printf("%d %d\n", r + 1, c + 1);				
-//				EXIT:;
-//				}
-//			}
-//		}
-//	}
-//}
