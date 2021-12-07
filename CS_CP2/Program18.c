@@ -117,8 +117,8 @@ void FindWord(inputData inputData, char* word, int r, int c, direction d)
 
 int CantSearchThatDirection(inputData inputData, int wordLength, int r, int c, direction d)
 {
-	return (d.vertical == -1 && r - wordLength < 0) ||
-		   (d.vertical == 1 && inputData.maxRow - (r + wordLength) < 0) ||
-		   (d.horizontal == -1 && c - wordLength < 0) ||
-		   (d.horizontal == 1 && inputData.maxCol - (c + wordLength) < 0);
+	return (d.vertical == -1 && r - (wordLength - 1) < 0) ||
+		   (d.vertical == 1 && r + (wordLength - 1) > inputData.maxRow) ||
+		   (d.horizontal == -1 && c - (wordLength - 1) < 0) ||
+		   (d.horizontal == 1 && c + (wordLength - 1) > inputData.maxCol);
 }
