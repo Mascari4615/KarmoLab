@@ -25,7 +25,7 @@ direction const W = { .vertical = 0, .horizontal = -1 };
 
 void Find(inputData inputData, char* word);
 void FindWord(inputData inputData, char* word, int r, int c, direction d);
-int CantSearchThatDirection(inputData inputData, int wordLength, int r, int c, direction d);
+int CantSearchThatDirection(inputData inputData, int wordLen, int r, int c, direction d);
 
 void main()
 {
@@ -40,6 +40,7 @@ void main()
 	{
 		while ((inputs[i] = (char*)malloc(sizeof(char) * n + 1)) == NULL);
 		scanf("%s", inputs[i]);
+		_strupr(inputs[i]);
 	}
 
 	inputData.inputs = inputs;
@@ -50,9 +51,10 @@ void main()
 	while ((words = (char**)malloc(sizeof(char*) * wordCount)) == NULL);
 	for (i = 0; i < wordCount; i++)
 	{
-		while ((words[i] = (char*)malloc(sizeof(char) * 101)) == NULL);
+		while ((words[i] = (char*)malloc(sizeof(char) * (100 + 1))) == NULL);
 		scanf("%s", words[i]);
 		while ((words[i] = (char*)realloc(words[i], strlen(words[i]) + 1)) == NULL);
+		_strupr(words[i]);
 	}
 
 	for (i = 0; i < wordCount; i++)
@@ -69,20 +71,13 @@ void main()
 
 void Find(inputData inputData, char* word)
 {
-	int r, c, wordLen = strlen(word);
-
-	for (c = 0; c < wordLen; c++)
-	{
-		if (word[c] >= 97) // A 대문자
-			word[c] -= 32; // a 소문자
-	}
+	int r, c;
 
 	for (r = 0; r < inputData.maxRow; r++)
 	{
 		for (c = 0; c < inputData.maxCol; c++)
 		{
-			if (inputData.inputs[r][c] != word[0] &&
-				inputData.inputs[r][c] != word[0] + 32)
+			if (inputData.inputs[r][c] != word[0])
 				continue;
 			
 			FindWord(inputData, word, r, c, N);
@@ -99,26 +94,26 @@ void Find(inputData inputData, char* word)
 
 void FindWord(inputData inputData, char* word, int r, int c, direction d)
 {
-	int i, wordLength = strlen(word);
+	int i, wordLen = strlen(word);
 	char curChar;
 
-	if (CantSearchThatDirection(inputData, wordLength, r, c, d))
+	if (CantSearchThatDirection(inputData, wordLen, r, c, d))
 		return;
 
-	for (i = 1; i < wordLength; i++)
+	for (i = 1; i < wordLen; i++)
 	{
 		curChar = inputData.inputs[r + i * d.vertical][c + i * d.horizontal];
-		if (curChar != word[i] && curChar != word[i] + 32)
+		if (curChar != word[i])
 			return;
 	}
 
 	printf("%d %d\n", r + 1, c + 1);
 }
 
-int CantSearchThatDirection(inputData inputData, int wordLength, int r, int c, direction d)
+int CantSearchThatDirection(inputData inputData, int wordLen, int r, int c, direction d)
 {
-	return (d.vertical == -1 && r - (wordLength - 1) < 0) ||
-		   (d.vertical == 1 && r + (wordLength - 1) > inputData.maxRow) ||
-		   (d.horizontal == -1 && c - (wordLength - 1) < 0) ||
-		   (d.horizontal == 1 && c + (wordLength - 1) > inputData.maxCol);
+	return (d.vertical == -1 && r - (wordLen - 1) < 0) ||
+		   (d.vertical == 1 && r + (wordLen - 1) > inputData.maxRow) ||
+		   (d.horizontal == -1 && c - (wordLen - 1) < 0) ||
+		   (d.horizontal == 1 && c + (wordLen - 1) > inputData.maxCol);
 }
