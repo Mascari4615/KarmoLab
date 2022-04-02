@@ -18,7 +18,7 @@
     <ClCompile Include="Bit.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Test.c">
+    <ClCompile Include="..\ComputerScience\C_Programs\Test.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

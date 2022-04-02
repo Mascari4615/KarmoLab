@@ -1,4 +1,2 @@
 ﻿  Test.c
-D:\C_Programs\C_Programs\Test.c(17,8): warning C4477: 'scanf' : 서식 문자열 '%d'에 'int *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int'입니다.
-D:\C_Programs\C_Programs\Test.c(18,8): warning C4477: 'scanf' : 서식 문자열 '%d'에 'int *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'int'입니다.
-  C_Programs.vcxproj -> D:\C_Programs\x64\Debug\C_Programs.exe
+c1 : fatal error C1083: 소스 파일을 열 수 없습니다. '..\ComputerScience\C_Programs\Test.c': No such file or directory

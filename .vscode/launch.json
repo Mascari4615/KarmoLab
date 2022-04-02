@@ -1,0 +1,42 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Program2_3",
+            "request": "launch",
+            "mainClass": "Program2_3",
+            "projectName": "C_Programs_2bd6e644"
+        },
+        {
+            "type": "java",
+            "name": "Launch Program2_2",
+            "request": "launch",
+            "mainClass": "Program2_2",
+            "projectName": "C_Programs_2bd6e644"
+        },
+        {
+            "type": "java",
+            "name": "Launch Program2_1",
+            "request": "launch",
+            "mainClass": "Program2_1",
+            "projectName": "C_Programs_2bd6e644"
+        },
+        {
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/CS_Programs/bin/Debug/net6.0/CS_Programs.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/CS_Programs",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}

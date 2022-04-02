@@ -1,4 +1,4 @@
-﻿class Program
+﻿class Program4344
 {
     // https://www.acmicpc.net/problem/4344
 
