@@ -3,6 +3,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Program2",
+            "request": "launch",
+            "mainClass": "Program2",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
+            "name": "Launch Program2_2",
+            "request": "launch",
+            "mainClass": "Program2_2",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
             "name": "Launch Program2_3",
             "request": "launch",
             "mainClass": "Program2_3",

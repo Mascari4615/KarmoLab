@@ -18,23 +18,6 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="ex3_4.c" />
-    <ClCompile Include="ex3_5.c" />
-    <ClCompile Include="listS.c" />
-    <ClCompile Include="Program2_Example.c" />
-    <ClCompile Include="Program2_24.c" />
-    <ClCompile Include="Program3_Example.c" />
-    <ClCompile Include="Program3_Practice.c" />
-    <ClCompile Include="Program6_Example.c" />
-    <ClCompile Include="queueS.c" />
-    <ClCompile Include="smTranspose.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="listS.h" />
-    <ClInclude Include="queueS.h" />
-    <ClInclude Include="smTranspose.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

@@ -56,6 +56,11 @@ void Program3_5()
 	// 별개의 파일 참고
 }
 
+void Program3_6()
+{
+	// 별개의 파일 참고
+}
+
 void Main()
 {
 	Progarm3_3();

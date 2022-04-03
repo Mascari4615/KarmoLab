@@ -280,6 +280,9 @@ void Program2_11()
 	getchar();
 }
 
+//
+
+// Program2_12 와 Program2_13 이 공유하는 구조체
 struct employee
 {
 	char name[10];
@@ -325,6 +328,8 @@ void Program2_13()
 	getchar();
 }
 
+//
+
 long int fact(int n)
 {
 	int value;
@@ -332,7 +337,7 @@ long int fact(int n)
 	{
 		printf("\n fact(1) 함수 호출!");
 		printf("\n fact(1) 값 1 반환!!");
-		return;
+		return 1;
 	}
 	else
 	{
@@ -353,6 +358,8 @@ void Program2_14()
 	getchar(); getchar();
 }
 
+//
+
 void hanoi(int n, int start, int work, int target)
 {
 	if (n == 1)
@@ -372,6 +379,8 @@ void Program2_15()
 	hanoi(3, 'A', 'B', 'C');
 	getchar();
 }
+
+//
 
 void main()
 {

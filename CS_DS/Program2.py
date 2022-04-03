@@ -1,91 +1,116 @@
 from ast import Str
-
-
-def Program2_17():
-    subject1Scores = []
-    subject2Scores = []
-    subject3Scores = []
-
-    for i in range(10):
-        print(str(i) + "학번 학생의 성적 입력")
-        s = list(input().split())
-        subject1Scores.append(int(s[0]))
-        subject2Scores.append(int(s[1]))
-        subject3Scores.append(int(s[2]))
-
-    for i in range(10):
-        total = subject1Scores[i] + subject2Scores[i] + subject3Scores[i]
-        average = total / 3
-        print("학번\t국어\t영어\t수학\t총점\t평균\n")
-        print("**************************************\n")
-        print(f"{i}\t{subject1Scores[i]}\t{subject2Scores[i]}\t{subject3Scores[i]}\t{total}\t{average}\n\n")
-
-def Program2_18():
-    arr = [ 19,2,25,92,36,45 ]
-
-    print("배열 요소 출력\n")
-    for i in range(6):
-        print(arr[i])
-
-    print("\n\n최솟값 최댓값 출력\n")
-    min = arr[0]
-    max = arr[0]
-    for i in range(6):
-        if (min > arr[i]):
-            min = arr[i]
-
-        if (max < arr[i]):
-            max = arr[i]
-    print(min, max)
-
-    print("\n\n평균 출력\n")
-    total = 0
-    average = 0
-    for i in range(6):
-        total += arr[i]
-        
-    average = total / 6
-    print(average)
-
-    print("\n\n분산 출력\n")
-    variance = 0
-    for i in range(6):
-        variance += pow(arr[i] - average, 2)
-    variance /= 6
-    print(variance)
-
-def Program2_19():
-    strings = []
-
-    for i in range(5):
-        strings.append(input())
-
-    for i in range(5):
-        print(strings[i])
-
-def Program2_20():
-    input1 = input()
-    input2 = input()
-
-    if input1 == input2:
-        print("문자열 같음")
-    else:
-        print("문자열 다름")
-    
-
-def Program2_25(n):
-    if (n < 1) :
-        return n
-    return n + Program2_25(n - 1)
-
-def Program2_26(n):
-    if n == 0 or n == 2:
-        return n
-    else:
-        return Program2_26(n - 1) + Program2_26(n - 2)
-
-# print(Program2_25(3))
-
 import sys
-sys.setrecursionlimit(10**6)
-print(Program2_26(3))
+sys.setrecursionlimit(10**7)
+
+
+def Program2_1():
+    # 파이썬은 C와 달리 타입을 알아서 판단하기 때문에, 타입에 따른 변수를 각각 선언하여 그 크기를 출력하기에는 어렵다.
+    return
+
+
+def Program2_2():
+    scores = [91, 86, 97]
+    grades = ['A', 'B', 'A']
+
+    print("\n *** 학년별 취득 학점 *** \n\n")
+
+    for i in range(3):
+        print((i+1), "학년 : 총점 = ", scores[i], ", 등급 = ", grades[i], "\n")
+
+
+def Program2_3():
+    multiply = []
+    print("\n1~9의 정수를 입력하세요 : ")
+    
+    while (1):
+        n = int(input())
+        if (n < 0) or (n > 9):
+            print("\n 1~9의 정수를 입력하세요 : ")
+        else:
+            break
+
+    print("\n")
+        
+    print("\n")
+    
+    for i in range(9):
+        multiply.append(n * (i + 1))
+        print(" {0} * {1} = {2} \n".format(n, (i + 1), multiply[i]))
+
+def Program2_4():
+	# 파이썬은 문자 배열을 만들고 문자열을 대입하는 방식으로 초기화(저장)할 수 없다
+    return
+
+def Program2_5():
+    # 파이썬은 문자 배열을 만들고 문자열을 대입하는 방식으로 초기화(저장)할 수 없다
+    return
+
+def Program2_6():
+	array = [[[0 for _ in range(4)] for _ in range(3)] for _ in range(2)]
+	value = 1;
+	for i in range(2):
+		for j in range(3):
+			for k in range(4):
+				array[i][j][k] = value;
+				print("\n array[{0}][{1}][{2}] = {3}".format(i, j, k, array[i][j][k]))
+				value += 1
+
+def Program2_7():
+    # 파이썬은 문자 배열을 만들고 문자열을 대입하는 방식으로 초기화(저장)할 수 없다
+    return
+
+def Program2_8():
+    # 파이썬은 기본적으로 포인터를 지원하지 않는다
+    return
+
+def Program2_9():
+    # 파이썬은 기본적으로 포인터를 지원하지 않는다
+    return
+
+def Program2_10():
+    # 파이썬은 기본적으로 포인터를 지원하지 않는다
+    return
+
+def Program2_11():
+    # 파이썬은 기본적으로 포인터를 지원하지 않는다
+    return
+
+def Program2_12():
+    # 파이썬은 기본적으로 구조체를 지원하지 않는다
+    return
+
+def Program2_13():
+    # 파이썬은 기본적으로 구조체를 지원하지 않는다
+    return
+
+def fact(n):
+    if (n <= 1):
+        print("\n fact(1) 함수 호출!")
+        print("\n fact(1) 값 1 반환!!")
+        return 1
+    else:
+        print("\n fact({0}) 함수 호출!".format(n))
+        value = (n * fact(n - 1))
+        print("\n fact({0}) 값 {1} 반환!!".format(n, value))
+        return value
+
+
+def Program2_14():
+    n = int(input("\n 정수를 입력하세요"))
+    result = fact(n)
+    print("\n\n {0}의 팩토리얼 값은 {1}입니다.\n".format(n, result))
+    return
+
+def hanoi(n, start, work, target):
+    if (n == 1):
+        print(" {0}에서 원반 {1}를(을) {2}로 옮김 \n".format(start, n, target))
+    else:
+        hanoi(n - 1, start, target, work)
+        print(" {0}에서 원반 {1}를(을) {2}로 옮김 \n".format(start, n, target))
+        hanoi(n - 1, work, start, target)
+
+def Program2_15():
+    hanoi(3, 'A', 'B', 'C')
+    return
+
+Program2_15()

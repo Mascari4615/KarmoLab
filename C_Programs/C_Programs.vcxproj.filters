@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\CP2">
+      <UniqueIdentifier>{8b2a8b9e-3239-4f11-8ef5-21bb6d1616af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\DS">
+      <UniqueIdentifier>{6d6fb3a4-f9bd-47a8-a8b3-49925a89d0cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bit.c">
@@ -21,5 +27,100 @@
     <ClCompile Include="..\ComputerScience\C_Programs\Test.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program1.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program2.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program3.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program4.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program5.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program6.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program7.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program8.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program9.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program10.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program11.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program12.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program13.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program16.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program17.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program18.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_CP2\Program19.c">
+      <Filter>소스 파일\CP2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\ex3_4.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\ex3_5.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\listS.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\dan34\Downloads\20211340_김도윤_1장2장연습문제\Program2_Practice.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\Program2_24.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\Program2_Example.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\Program3_Example.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\Program3_Practice.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\Program6_Example.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\queueS.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CS_DS\smTranspose.c">
+      <Filter>소스 파일\DS</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CS_DS\listS.h">
+      <Filter>소스 파일\DS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CS_DS\queueS.h">
+      <Filter>소스 파일\DS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CS_DS\smTranspose.h">
+      <Filter>소스 파일\DS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

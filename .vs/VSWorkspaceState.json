@@ -1,8 +1,6 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ComputerScience",
-    "\\ComputerScience\\DataStructures",
     "\\CS_DS",
     "\\CS_OOP",
     "\\CS_Programs",
@@ -10,6 +8,6 @@
     "\\CS_Programs\\Baekjoon\\5. 1차원 배열",
     "\\C_Programs"
   ],
-  "SelectedNode": "\\CS_DS\\ex3_5.c",
+  "SelectedNode": "\\Ttmdacl_Programs.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -14,47 +14,4 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Program2_Example.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Program2_24.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Program3_Practice.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Program3_Example.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="listS.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="ex3_4.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="smTranspose.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="ex3_5.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Program6_Example.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="queueS.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="listS.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="smTranspose.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="queueS.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-  </ItemGroup>
 </Project>
