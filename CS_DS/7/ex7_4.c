@@ -53,7 +53,7 @@ int main(void)
 				foundedNode = searchBST(root, key);
 				if (foundedNode != NULL)
 				{
-					printf("\n %c를 찾았습니다! \n", f)
+					printf("\n %c를 찾았습니다! \n", foundedNode->key);
 				}
 				else
 				{
@@ -77,4 +77,8 @@ void menu(void)
 	printf("\n\t1 : 트리 출력");
 	printf("\n\t2 : 문자 삽입");
 	printf("\n\t3 : 문자 삭제");
+	printf("\n\t4 : 문자 검색");
+	printf("\n\t5 : 종료");
+	printf("\n*----------------------------------------------*");
+	printf("\n메뉴입력 >> ");
 }

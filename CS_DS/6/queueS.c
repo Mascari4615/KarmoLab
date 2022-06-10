@@ -46,7 +46,33 @@ void enQueue(QueueType* Q, element item)
 		return;
 	}
 	else
+	{
+		Q->rear++:
+		Q->queue[Q.rear] = item;
+	}
 }
-element deQueue(QueueType* Q);
-element peedQ(QueueType* Q);
-void prentQ(QueueType* Q);
+element deQueue(QueueType* Q)
+{
+	if (isQueueFull(Q))
+	{
+		return;
+	}
+	else
+	{
+		Q->rear++:
+		return Q->queue[Q->front];
+	}
+}
+element peekQ(QueueType* Q)
+{
+	if (isQueueEmpty(Q)) return;
+	else return Q->queue[Q->front + 1];
+}
+void printQ(QueueType* Q)
+{
+	int i;
+	printf(" Queue : [");
+	for (i = Q->front + 1; i <= Q->rear; i++)
+		printf("%3c", Q->queue[i]);
+	printf(" ]");
+}

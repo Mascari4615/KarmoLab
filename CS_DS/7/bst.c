@@ -7,7 +7,7 @@ treeNode* searchBST(treeNode* root, element x)
 {
 	treeNode* p;
 	p = root;
-	while (p !- NULL)
+	while (p != NULL)
 	{
 		if (x < p->key)
 		{
@@ -16,7 +16,7 @@ treeNode* searchBST(treeNode* root, element x)
 		else if (x == p->key)
 		{
 			return p;
-		}Â÷
+		}
 		else
 		{
 			p = p->right;

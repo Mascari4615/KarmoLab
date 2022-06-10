@@ -5,6 +5,8 @@
     ],
     "files.associations": {
         "stdlib.h": "c",
-        "program4_practice": "c"
+        "program4_practice": "c",
+        "stdio.h": "c",
+        "stackl.h": "c"
     }
 }

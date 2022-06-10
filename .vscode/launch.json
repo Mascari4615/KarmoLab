@@ -3,6 +3,55 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Program11",
+            "request": "launch",
+            "mainClass": "Program11",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
+            "name": "Launch Program9_3",
+            "request": "launch",
+            "mainClass": "Program9_3",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
+            "name": "Launch Program9_2",
+            "request": "launch",
+            "mainClass": "Program9_2",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
+            "name": "Launch Program9_1",
+            "request": "launch",
+            "mainClass": "Program9_1",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
+            "name": "Launch Program7_3",
+            "request": "launch",
+            "mainClass": "Program7_3",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
+            "name": "Launch Program7_2",
+            "request": "launch",
+            "mainClass": "Program7_2",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
+            "name": "Launch Program7_1",
+            "request": "launch",
+            "mainClass": "Program7_1",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
             "name": "Launch Program2",
             "request": "launch",
             "mainClass": "Program2",
