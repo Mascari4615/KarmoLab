@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ThreadTimerEx",
+            "request": "launch",
+            "mainClass": "ThreadTimerEx",
+            "projectName": "Ttmdacl_Programs_49e717ab"
+        },
+        {
+            "type": "java",
             "name": "Launch Program11",
             "request": "launch",
             "mainClass": "Program11",
