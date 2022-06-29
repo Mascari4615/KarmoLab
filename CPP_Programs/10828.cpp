@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <map>
 
@@ -13,52 +14,82 @@ static map< string, int > m;
 
 void Init()
 {
-    m["push"] = ENUM_PUSH;
-    m["pop"] = ENUM_POP;
-    m["size"] = ENUM_SIZE;
-    m["empty"] = ENUM_EMPTY;
-    m["top"] = ENUM_TOP;
+	m["push"] = ENUM_PUSH;
+	m["pop"] = ENUM_POP;
+	m["size"] = ENUM_SIZE;
+	m["empty"] = ENUM_EMPTY;
+	m["top"] = ENUM_TOP;
 }
 
-struct Stack
+struct Node
 {
-    int data;
-    Stack* next = NULL;
+	int data;
+	Node* next = NULL;
 };
 
 int main()
 {
-    int n;
-    cin >> n;
+	Init();
 
-    Stack stack;
+	int n;
+	cin >> n;
 
-    for (int i = 0; i < n; i++)
-    {
-        string command;
-        cin >> command;
+	Node* stack = nullptr;
+	Node* top = nullptr;
+	int size = 0;
 
-        switch (m[command])
-        {
-            case ENUM_PUSH:
-                // asd
-                break;
-            case ENUM_POP:
-                // asd
-                break;
-            case ENUM_SIZE:
-                // asd
-                break;
-            case ENUM_EMPTY:
-                // asd
-                break;
-            case ENUM_TOP:
-                // asd
-                break;
-            default:
-                break;
-        }
-    }
+	for (int i = 0; i < n; i++)
+	{
+		string command;
+		cin >> command;
 
-    std::cout << "Hello World!\n";
+		switch (m[command])
+		{
+			case ENUM_PUSH:
+			{
+				Node* newNode = (Node*)malloc(sizeof(Node));
+				cin >> newNode->data;
+				if (top != nullptr)
+				{
+					top->next = newNode;
+					top = newNode;
+				}
+				else
+				{
+					stack = newNode;
+					top = newNode;
+				}
+				size++;
+				break;
+			}
+			case ENUM_POP:
+				if (stack)
+				{
+					Node* pre = stack;
+					while (pre->next == top)
+					{
+						pre = pre->next;
+					}
+					cout << pre->data;
+					top = pre;
+					size--;
+				}
+				else
+				{
+					cout << -1;
+				}
+				break;
+			case ENUM_SIZE:
+				cout << size;
+				break;
+			case ENUM_EMPTY:
+				cout << (size == 0 ? 1 : 0);
+				break;
+			case ENUM_TOP:
+				cout << (top != nullptr ? top->data : -1);
+				break;
+			default:
+				break;
+		}
+	}
 }
