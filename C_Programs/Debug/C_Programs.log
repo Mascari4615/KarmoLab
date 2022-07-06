@@ -1,3 +1,0 @@
-﻿  DarkKnight.c
-D:\C_Programs\C_Programs\DarkKnight.c(12,2): warning C4098: 'main': 'void' 함수에서 값을 반환하고 있습니다.
-  C_Programs.vcxproj -> D:\C_Programs\Debug\C_Programs.exe
