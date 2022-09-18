@@ -13,16 +13,18 @@ public class Solution
 			if (edges[i, 0] == 0)
 				visitableNodes.Add(edges[i, 1]);
 		}
-		Console.WriteLine($"VIS : {visitableNodes[0]} {visitableNodes[1]}");
-		return Tmp(0, 0, 0, 0, visitableNodes, nodeInfo, edges);
+		return Recursive(0, 0, 0, 0, visitableNodes, nodeInfo, edges);
 	}
 
-	public int Tmp(int curNode, int maxSheepCount, int sheepCount, int wolfCount, List<int> visitableNodes, int[] nodeInfo, int[,] edges)
+	public int Recursive(int curNode, int maxSheepCount, int sheepCount, int wolfCount, List<int> visitableNodes, int[] nodeInfo, int[,] edges)
 	{
 		if (nodeInfo[curNode] == 0)
 			sheepCount++;
 		else
 			wolfCount++;
+        
+        if (sheepCount <= wolfCount)
+            return maxSheepCount;
 
 		maxSheepCount = Math.Max(maxSheepCount, sheepCount);
 
@@ -33,15 +35,11 @@ public class Solution
 
 			for (int j = 0; j < edges.GetLength(0); j++)
 			{
-				if (edges[i, 0] == visitableNodes[i])
-					newVisitableNodes.Add(edges[i, 1]);
+				if (edges[j, 0] == visitableNodes[i])
+					newVisitableNodes.Add(edges[j, 1]);
 			}
 
-			string s = string.Empty;
-			newVisitableNodes.ForEach(x => s += x);
-			Console.WriteLine($"VIS : {s}");
-
-			maxSheepCount = Math.Max(maxSheepCount, Tmp(visitableNodes[i], maxSheepCount, sheepCount, wolfCount, newVisitableNodes, nodeInfo, edges));
+			maxSheepCount = Math.Max(maxSheepCount, Recursive(visitableNodes[i], maxSheepCount, sheepCount, wolfCount, newVisitableNodes, nodeInfo, edges));
 		}
 
 		return maxSheepCount;
