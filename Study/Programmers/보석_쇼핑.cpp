@@ -1,3 +1,68 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+
+vector<int> solution(vector<string> gems)
+{
+	vector<int> answer(2);
+	unordered_map<string, int> hashMap;
+
+	for (int i = 0; i < gems.size(); i++)
+	{
+		if (hashMap.find(gems[i]) == hashMap.end())
+			hashMap.insert(unordered_map<string, int>::value_type(gems[i], -1));
+	}
+	int gemsCount = hashMap.size();
+	hashMap.clear();
+
+	int s = 0;
+	int e = 0;
+	int minLen = gems.size();
+	int i;
+
+	while (true)
+	{
+		for (i = e; i < gems.size(); i++)
+		{
+			hashMap[gems[i]]++;
+
+			if (hashMap.size() == gemsCount)
+			{
+				e = i;
+				break;
+			}
+		}
+
+		if (i == gems.size())
+			break;
+
+		for (i = s; i < gems.size(); i++)
+		{
+			if (hashMap[gems[i]] == 1)
+			{
+				s = i;
+				break;
+			}
+			hashMap[gems[i]]--;
+		}
+
+		if (e - s < minLen)
+		{
+			answer[0] = s + 1;
+			answer[1] = e + 1;
+			minLen = e - s;
+		}
+		hashMap.erase(gems[s]);
+		s++;
+		e++;
+	}
+
+	return answer;
+}
+
 // 첫 풀이
 //#include <string>
 //#include <vector>
@@ -113,6 +178,7 @@
 //    }
 //}
 
+// 세 번째 풀이
 //#include <string>
 //#include <vector>
 //#include <algorithm>
