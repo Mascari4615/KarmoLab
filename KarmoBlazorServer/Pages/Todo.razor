@@ -1,0 +1,43 @@
+﻿@using KarmoBlazorServer.Data
+@* @inject TodoService TodoSvc *@
+
+@page "/todo"
+
+<h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
+
+<ul>
+    @foreach (var todo in todos)
+    {
+
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" />
+            <input @bind="todo.Title" />
+        </li>
+    }
+</ul>
+
+@* @bind가 @code의 변수와 인풋값을 연결 *@
+@* @onclick이 @code의 함수와 버튼 이벤트를 연결 *@
+<input placeholder="Something todo" @bind="newTodo" />
+<button @onclick="AddTodo">Add todo</button>
+
+@code
+{
+    private List<TodoItem> todos = new();
+    // private TodoItem[] todos;
+    private string? newTodo;
+
+    // protected override async Task OnInitializedAsync()
+    //{
+
+    //}
+
+    private void AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))
+        {
+            todos.Add(new TodoItem { Title = newTodo });
+            newTodo = string.Empty;
+        }
+    }
+}
