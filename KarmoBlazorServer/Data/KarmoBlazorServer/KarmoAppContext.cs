@@ -14,6 +14,7 @@ public partial class KarmoAppContext : DbContext
     }
 
     public virtual DbSet<WeatherForecast> WeatherForecast { get; set; }
+    public virtual DbSet<Temp> Temp { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -24,6 +25,13 @@ public partial class KarmoAppContext : DbContext
             entity.Property(e => e.Date).HasColumnType("datetime");
             entity.Property(e => e.Summary).HasMaxLength(50);
             entity.Property(e => e.UserName).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<Temp>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_Animations");
+
+            entity.Property(e => e.Name).HasColumnType("Name");
         });
 
         OnModelCreatingPartial(modelBuilder);
