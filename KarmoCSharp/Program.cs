@@ -6,7 +6,7 @@ class PS
 {
     public static void Main()
     {
-        Program2_3();
+        Program2_1();
     }
 
     public static void Program1_1()
@@ -29,7 +29,7 @@ class PS
 
     public static int MyCompare(int[] arr1, int[] arr2)
     {
-        return (arr1[0] + arr1[1] < arr2[0] + arr1[1]) ? 1 : 0;
+        return (arr1[0] + arr1[1] == arr2[0] + arr1[1]) ? 0 : (arr1[0] + arr1[1] < arr2[0] + arr1[1]) ? 1 : -1;
     }
 
     public static void Program2_1()
