@@ -1,5 +1,4 @@
-﻿
-@page "/fetchdata"
+﻿@page "/specialthing"
 
 @using KarmoBlazorServer.Data
 @using KarmoBlazorServerDB.Data.KarmoBlazorServer
@@ -14,9 +13,9 @@
 	We access WeatherForecastService using @Service
 *@
 
-@inherits OwningComponentBase<WeatherForecastService>
+@inherits OwningComponentBase<SpecialThingService>
 
-<h1>Weather forecast</h1>
+<h1>SpecialThing</h1>
 
 <!-- AuthorizeView allows us to only show sections of the page -->
 <!-- based on the security on the current user -->
@@ -24,7 +23,7 @@
     <!-- Show this section if the user is logged in -->
     <authorized>
         <h4>Hello, @UserIdentityName!</h4>
-        @if (forecasts == null)
+        @if (specialThings == null)
         {
             <!-- Show this if the current user has no data... yet... -->
             <p><em>Loading...</em></p>
@@ -35,24 +34,26 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Creator</th>
                         <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
-                        <th>Summary</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var forecast in forecasts)
+                    @foreach (var specialThing in specialThings)
                     {
                         <tr>
-                            <td>@forecast.Date?.ToShortDateString()</td>
-                            <td>@forecast.TemperatureC</td>
-                            <td>@forecast.TemperatureF</td>
-                            <td>@forecast.Summary</td>
+                            <td>@specialThing.Id</td>
+                            <td>@specialThing.Name</td>
+                            <td>@specialThing.Type</td>
+                            <td>@specialThing.Creator</td>
+                            <td>@specialThing.Date.ToShortDateString()</td>
                             <td>
-                                <!-- Edit the current forecast -->
-                                <button class="btn btn-primary" @onclick="(() => EditForecast(forecast))">
+                                <!-- Edit the current Temp -->
+                                <button class="btn btn-primary" @onclick="(() => EditSpecialThing(specialThing))">
                                     Edit
                                 </button>
                             </td>
@@ -62,41 +63,42 @@
             </table>
 
             <p>
-                <!-- Add a new forecast -->
-                <button class="btn btn-success" @onclick="AddNewForecast">
-                    Add New Forecast
+                <!-- Add a new Temp -->
+                <button class="btn btn-success" @onclick="AddNewSpecialThing">
+                    Add New Temp
                 </button>
             </p>
 
             @if (ShowPopup)
             {
-                <!-- This is the popup to create or edit a forecast -->
+                <!-- This is the popup to create or edit a Temp -->
                 <div class="modal" tabindex="-1" style="display:block" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h3 class="modal-title">Edit Forecast</h3>
+                                <h3 class="modal-title">Edit Temp</h3>
 
                                 <!-- Button to close the popup -->
                                 <button type="button" class="close" @onclick="ClosePopup">
                                     <span aria-hidden="true">X</span>
                                 </button>
                             </div>
-                            <!-- Edit form for the current forecast -->
+                            <!-- Edit form for the current Temp -->
                             <div class="modal-body">
-                                <input class="form-control" type="text" placeholder="Celsius forecast" @bind="objWeatherForecast.TemperatureC"/>
-                                <input class="form-control" type="text" placeholder="Fahrenheit forecast" @bind="objWeatherForecast.TemperatureF" />
-                                <input class="form-control" type="text" placeholder="Summary" @bind="objWeatherForecast.Summary" />
-                                <br/>
-                                <!-- Button to save the forecast -->
-                                <button class="btn btn-success" @onclick="SaveForecast">
+                                <input class="form-control" type="text" placeholder="작품 이름" @bind="objSpecialThing.Name" />
+                                <input class="form-control" type="text" placeholder="제작사" @bind="objSpecialThing.Creator" />
+                                <input class="form-control" type="date" placeholder="년도" @bind="objSpecialThing.Date" />
+                                <input class="form-control" type="text" placeholder="타입" @bind="objSpecialThing.Type" />
+                                <br />
+                                <!-- Button to save the Temp -->
+                                <button class="btn btn-success" @onclick="SaveSpecialThing">
                                     Save
                                 </button>&nbsp;
                                 <!-- Only show delete button if not a new record -->
-                                @if (objWeatherForecast.Id > 0)
+                                @if (objSpecialThing.Id > 0)
                                 {
-                                    <!-- Button to delete the forecast -->
-                                    <button class="btn btn-danger" @onclick="DeleteForecast">
+                                    <!-- Button to delete the Temp -->
+                                    <button class="btn btn-danger" @onclick="DeleteSpecialThing">
                                         Delete
                                     </button>
                                 }
@@ -125,11 +127,11 @@
         set;
     }
 
-    List<WeatherForecast> forecasts = new List<WeatherForecast>();
+    List<SpecialThing> specialThings = new List<SpecialThing>();
 
     private string UserIdentityName = "";
 
-    WeatherForecast objWeatherForecast = new WeatherForecast();
+    SpecialThing objSpecialThing = new SpecialThing();
     bool ShowPopup = false;
 
     void ClosePopup()
@@ -138,51 +140,52 @@
         ShowPopup = false;
     }
 
-    void AddNewForecast()
+    void AddNewSpecialThing()
     {
-        // Make new forecast
-        objWeatherForecast = new WeatherForecast();
+        // Make new Temp
+        objSpecialThing = new SpecialThing();
         // Set Id to 0 so we know it is a new record
-        objWeatherForecast.Id = 0;
+        objSpecialThing.Id = 0;
         // Open the Popup
         ShowPopup = true;
     }
 
-    async Task SaveForecast()
+    async Task SaveSpecialThing()
     {
         // Close the Popup
         ShowPopup = false;
-        // A new forecast will have the Id set to 0
-        if (objWeatherForecast.Id == 0)
+        // A new Temp will have the Id set to 0
+        if (objSpecialThing.Id == 0)
         {
-            // Create new forecast
-            WeatherForecast objNewWeatherForecast = new WeatherForecast();
-            objNewWeatherForecast.Date = System.DateTime.Now;
-            objNewWeatherForecast.Summary = objWeatherForecast.Summary;
-            objNewWeatherForecast.TemperatureC = Convert.ToInt32(objWeatherForecast.TemperatureC);
-            objNewWeatherForecast.TemperatureF = Convert.ToInt32(objWeatherForecast.TemperatureF);
-            objNewWeatherForecast.UserName = UserIdentityName;
+            // Create new Temp
+            SpecialThing objNewSpecialThing = new SpecialThing();
+            objNewSpecialThing.Name = objSpecialThing.Name;
+            objNewSpecialThing.Type = objSpecialThing.Type;
+            // objNewSpecialThing.Date = objSpecialThing.Date;
+            objNewSpecialThing.Date = DateTime.Now;
+            objNewSpecialThing.Creator = objSpecialThing.Creator;
             // Save the result
-            var result = @Service.CreateForecastAsync(objNewWeatherForecast);
+            var result = @Service.CreateSpecialThingAsync(objNewSpecialThing);
         }
         else
         {
             // This is an update
-            var result = @Service.UpdateForecastAsync(objWeatherForecast);
+            var result = @Service.UpdateSpecialThingAsync(objSpecialThing);
         }
 
         // Get the forecasts for the current user
-        forecasts = await @Service.GetForecastAsync(UserIdentityName);
+        specialThings = await @Service.GetSpecialThingAsync();
     }
 
-    async Task DeleteForecast()
+    async Task DeleteSpecialThing()
     {
         // Close the Popup
         ShowPopup = false;
-        // Delete the forecast
-        var result = @Service.DeleteForecastAsync(objWeatherForecast);
+        // Delete the Temp
+        var result = @Service.DeleteSpecialThingAsync(objSpecialThing);
         // Get the forecasts for the current user
-        forecasts = await @Service.GetForecastAsync(UserIdentityName);
+        // temps = await @Service.GetTempAsync(UserIdentityName);
+        specialThings = await @Service.GetSpecialThingAsync();
     }
 
     protected override async Task OnInitializedAsync()
@@ -198,14 +201,14 @@
         }
         // Get the forecasts for the current user
         // We access WeatherForecastService using @Service
-        forecasts = await @Service.GetForecastAsync(UserIdentityName);
+        specialThings = await @Service.GetSpecialThingAsync();
     }
 
-    void EditForecast(WeatherForecast weatherForecast)
+    void EditSpecialThing(SpecialThing specialThing)
     {
-        // Set the selected forecast
-        // as the current forecast
-        objWeatherForecast = weatherForecast;
+        // Set the selected Temp
+        // as the current Temp
+        objSpecialThing = specialThing;
         // Open the Popup
         ShowPopup = true;
     }

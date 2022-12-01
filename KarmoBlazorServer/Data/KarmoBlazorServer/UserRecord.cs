@@ -5,17 +5,13 @@ using System.Collections.Generic;
 
 namespace KarmoBlazorServerDB.Data.KarmoBlazorServer;
 
-public partial class WeatherForecast
+public partial class UserRecord
 {
     public int Id { get; set; }
 
-    public DateTime? Date { get; set; }
-
-    public int? TemperatureC { get; set; }
-
-    public int? TemperatureF { get; set; }
-
-    public string Summary { get; set; }
-
     public string UserName { get; set; }
+    public int SpecialThingId { get; set; }
+    public DateTime Date { get; set; }
+    public int? Star { get; set; }
+    public string? Comment { get; set; }
 }

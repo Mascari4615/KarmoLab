@@ -21,7 +21,8 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
 // builder.Services.AddSingleton<WeatherForecastService>();
 // Scoped creates an instance for each user
-builder.Services.AddScoped<WeatherForecastService>();
+builder.Services.AddScoped<UserRecordService>();
+builder.Services.AddScoped<SpecialThingService>();
 
 // Register the pizzas service
 // builder.Services.AddSingleton<TodoService>();

@@ -6,7 +6,7 @@ class PS
 {
     public static void Main()
     {
-        Program2_1();
+        Program2_3();
     }
 
     public static void Program1_1()

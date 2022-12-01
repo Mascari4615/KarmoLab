@@ -13,12 +13,12 @@ public partial class KarmoAppContext : DbContext
     {
     }
 
-    public virtual DbSet<WeatherForecast> WeatherForecast { get; set; }
-    public virtual DbSet<Temp> Temp { get; set; }
+    public virtual DbSet<UserRecord> UserRecord { get; set; }
+    public virtual DbSet<SpecialThing> SpecialThing { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<WeatherForecast>(entity =>
+        /*modelBuilder.Entity<WeatherForecast>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__WeatherF__3214EC0798D5A593");
 
@@ -32,7 +32,7 @@ public partial class KarmoAppContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK_Animations");
 
             entity.Property(e => e.Name).HasColumnType("Name");
-        });
+        });*/
 
         OnModelCreatingPartial(modelBuilder);
     }

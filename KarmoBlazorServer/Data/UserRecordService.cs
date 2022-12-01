@@ -27,42 +27,50 @@ using System.Threading.Tasks;
 
 namespace KarmoBlazorServer.Data
 {
-    public class WeatherForecastService
+    public class UserRecordService
     {
         private readonly KarmoAppContext _context;
 
-        public WeatherForecastService(KarmoAppContext context)
+        public UserRecordService(KarmoAppContext context)
         {
             _context = context;
         }
 
-        public async Task<List<WeatherForecast>> GetForecastAsync(string strCurrentUser)
+        public async Task<List<UserRecord>> GetUserRecordAsync()
         {
             // Get Weather Forecasts
-            return await _context.WeatherForecast
-            // Only get entries for the current logged in user
-            .Where(x => x.UserName == strCurrentUser)
-            // Use AsNoTracking to disable EF change tracking
-            // Use ToListAsync to avoid blocking a thread
+            return await _context.UserRecord
             .AsNoTracking().ToListAsync();
         }
 
-        public Task<WeatherForecast> CreateForecastAsync(WeatherForecast objWeatherForecast)
+        /*public async Task<List<UserRecord>> GetTempAsync(string tempName)
         {
-            _context.WeatherForecast.Add(objWeatherForecast);
+            // Get Weather Forecasts
+            return await _context.UserRecord
+            // Only get entries for the current logged in user
+            .Where(x => x.Name == tempName)
+            // Use AsNoTracking to disable EF change tracking
+            // Use ToListAsync to avoid blocking a thread
+            .AsNoTracking().ToListAsync();
+        }*/
+
+        public Task<UserRecord> CreateUserRecordAsync(UserRecord objUserRecord)
+        {
+            _context.UserRecord.Add(objUserRecord);
             _context.SaveChanges();
-            return Task.FromResult(objWeatherForecast);
+            return Task.FromResult(objUserRecord);
         }
 
-        public Task<bool> UpdateForecastAsync(WeatherForecast objWeatherForecast)
+        public Task<bool> UpdateUserRecordAsync(UserRecord objUserRecord)
         {
-            var ExistingWeatherForecast = _context.WeatherForecast.Where(x => x.Id == objWeatherForecast.Id).FirstOrDefault();
-            if (ExistingWeatherForecast != null)
+            var ExistingUserRecord = _context.UserRecord.Where(x => x.Id == objUserRecord.Id).FirstOrDefault();
+            if (ExistingUserRecord != null)
             {
-                ExistingWeatherForecast.Date = objWeatherForecast.Date;
-                ExistingWeatherForecast.Summary = objWeatherForecast.Summary;
-                ExistingWeatherForecast.TemperatureC = objWeatherForecast.TemperatureC;
-                ExistingWeatherForecast.TemperatureF = objWeatherForecast.TemperatureF;
+                ExistingUserRecord.UserName = objUserRecord.UserName;
+                ExistingUserRecord.Date = objUserRecord.Date;
+                ExistingUserRecord.SpecialThingId = objUserRecord.SpecialThingId;
+                ExistingUserRecord.Comment = objUserRecord.Comment;
+                ExistingUserRecord.Star = objUserRecord.Star;
                 _context.SaveChanges();
             }
             else
@@ -72,12 +80,12 @@ namespace KarmoBlazorServer.Data
             return Task.FromResult(true);
         }
 
-        public Task<bool> DeleteForecastAsync(WeatherForecast objWeatherForecast)
+        public Task<bool> DeleteUserRecordAsync(UserRecord objUserRecord)
         {
-            var ExistingWeatherForecast = _context.WeatherForecast.Where(x => x.Id == objWeatherForecast.Id).FirstOrDefault();
-            if (ExistingWeatherForecast != null)
+            var ExistingUserRecord = _context.UserRecord.Where(x => x.Id == objUserRecord.Id).FirstOrDefault();
+            if (ExistingUserRecord != null)
             {
-                _context.WeatherForecast.Remove(ExistingWeatherForecast);
+                _context.UserRecord.Remove(ExistingUserRecord);
                 _context.SaveChanges();
             }
             else

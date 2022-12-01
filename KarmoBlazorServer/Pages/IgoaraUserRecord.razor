@@ -1,0 +1,207 @@
+﻿@page "/userrecord"
+
+@using KarmoBlazorServer.Data
+@using KarmoBlazorServerDB.Data.KarmoBlazorServer
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@inherits OwningComponentBase<UserRecordService>
+
+<h1>UserRecord</h1>
+
+<authorizeview>
+    <authorized>
+        <h4>Hello, @UserIdentityName!</h4>
+        @if (userRecords == null)
+        {
+            <!-- Show this if the current user has no data... yet... -->
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <!-- Show the forecasts for the current user -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>UserName</th>
+                        <th>SpecialThingId</th>
+                        <th>Date</th>
+                        <th>Comment</th>
+                        <th>Star</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var userRecord in userRecords)
+                    {
+                        <tr>
+                            <td>@userRecord.Id</td>
+                            <td>@userRecord.Date</td>
+                            <td>@userRecord.UserName</td>
+                            <td>@userRecord.SpecialThingId</td>
+                            <td>@userRecord.Date.ToShortDateString()</td>
+                            <td>@userRecord.Comment</td>
+                            <td>@userRecord.Star</td>
+                            <td>
+                                <!-- Edit the current Temp -->
+                                <button class="btn btn-primary" @onclick="(() => EditUserRecord(userRecord))">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <p>
+                <!-- Add a new Temp -->
+                <button class="btn btn-success" @onclick="AddNewUserRecordThing">
+                    Add New Temp
+                </button>
+            </p>
+
+            @if (ShowPopup)
+            {
+                <!-- This is the popup to create or edit a Temp -->
+                <div class="modal" tabindex="-1" style="display:block" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Edit Temp</h3>
+
+                                <!-- Button to close the popup -->
+                                <button type="button" class="close" @onclick="ClosePopup">
+                                    <span aria-hidden="true">X</span>
+                                </button>
+                            </div>
+                            <!-- Edit form for the current Temp -->
+                            <div class="modal-body">
+                                <input class="form-control" type="text" placeholder="작품 ID" @bind="objUserRecord.SpecialThingId" />
+                                <input class="form-control" type="date" placeholder="경험 시간" @bind="objUserRecord.Date" />
+                                <input class="form-control" type="text" placeholder="별점" @bind="objUserRecord.Star" />
+                                <input class="form-control" type="text" placeholder="한줄평" @bind="objUserRecord.Comment" />
+                                <br />
+                                <!-- Button to save the Temp -->
+                                <button class="btn btn-success" @onclick="SaveUserRecord">
+                                    Save
+                                </button>&nbsp;
+                                <!-- Only show delete button if not a new record -->
+                                @if (objUserRecord.Id > 0)
+                                {
+                                    <!-- Button to delete the Temp -->
+                                    <button class="btn btn-danger" @onclick="DeleteUserRecord">
+                                        Delete
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </authorized>
+
+    <!-- Show this section if the user is not logged in -->
+    <notauthorized>
+        <p>You're not signed in.</p>
+    </notauthorized>
+</authorizeview>
+
+@code
+{
+    // AuthenticationState is available as a CascadingParameter
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationStateTask
+    {
+        get;
+        set;
+    }
+
+    List<UserRecord> userRecords = new List<UserRecord>();
+
+    private string UserIdentityName = "";
+
+    UserRecord objUserRecord = new UserRecord();
+    bool ShowPopup = false;
+
+    void ClosePopup()
+    {
+        // Close the Popup
+        ShowPopup = false;
+    }
+
+    void AddNewUserRecordThing()
+    {
+        // Make new Temp
+        objUserRecord = new UserRecord();
+        // Set Id to 0 so we know it is a new record
+        objUserRecord.Id = 0;
+        // Open the Popup
+        ShowPopup = true;
+    }
+
+    async Task SaveUserRecord()
+    {
+        // Close the Popup
+        ShowPopup = false;
+        // A new Temp will have the Id set to 0
+        if (objUserRecord.Id == 0)
+        {
+            // Create new Temp
+            UserRecord objNewUserRecord = new UserRecord();
+            objNewUserRecord.UserName = UserIdentityName;
+            objNewUserRecord.SpecialThingId = objUserRecord.SpecialThingId;
+            objNewUserRecord.Date = objUserRecord.Date;
+            objNewUserRecord.Star = objUserRecord.Star;
+            objNewUserRecord.Comment = objUserRecord.Comment;
+            // Save the result
+            var result = @Service.CreateUserRecordAsync(objNewUserRecord);
+        }
+        else
+        {
+            // This is an update
+            var result = @Service.UpdateUserRecordAsync(objUserRecord);
+        }
+
+        // Get the forecasts for the current user
+        userRecords = await @Service.GetUserRecordAsync();
+    }
+
+    async Task DeleteUserRecord()
+    {
+        // Close the Popup
+        ShowPopup = false;
+        // Delete the Temp
+        var result = @Service.DeleteUserRecordAsync(objUserRecord);
+        // Get the forecasts for the current user
+        // temps = await @Service.GetTempAsync(UserIdentityName);
+        userRecords = await @Service.GetUserRecordAsync();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Get the current user
+        if (authenticationStateTask != null)
+        {
+            var user = (await authenticationStateTask).User;
+            if (user.Identity != null)
+            {
+                UserIdentityName = user.Identity.Name ?? "";
+            }
+        }
+        // Get the forecasts for the current user
+        // We access WeatherForecastService using @Service
+        userRecords = await @Service.GetUserRecordAsync();
+    }
+
+    void EditUserRecord(UserRecord UserRecord)
+    {
+        // Set the selected Temp
+        // as the current Temp
+        objUserRecord = UserRecord;
+        // Open the Popup
+        ShowPopup = true;
+    }
+}
