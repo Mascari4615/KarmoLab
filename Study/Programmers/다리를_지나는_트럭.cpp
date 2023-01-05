@@ -1,7 +1,6 @@
-﻿#include <string>
+#include <string>
 #include <vector>
 #include <queue>
-#include <algorithm>
 
 using namespace std;
 
@@ -23,8 +22,6 @@ int solution(int bridgeLength, int maxWeight, vector<int> truckWeights)
 	queue<int> q;
 	int qSum = 0;
 
-	// sort(truckWeights.begin(), truckWeights.end());
-
 	for (int i = 0; i < bridgeLength; i++)
 		q.push(0);
 
@@ -37,12 +34,12 @@ int solution(int bridgeLength, int maxWeight, vector<int> truckWeights)
 		q.pop();
 
 		if (passed != 0)
-			passedTruckCount++;	
+			passedTruckCount++;
 
 		if (passedTruckCount == totalTruckCount)
 			break;
 
-		if ((truckWeights.size() > 0) && 
+		if ((truckWeights.size() > 0) &&
 			(qSum + truckWeights.back() <= maxWeight))
 		{
 			q.push(truckWeights.back());
