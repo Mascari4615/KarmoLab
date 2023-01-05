@@ -1,6 +1,3 @@
-#include <string>
-#include <vector>
-
 using namespace std;
 
 // 문제
