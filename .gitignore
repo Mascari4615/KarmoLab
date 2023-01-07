@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# WebCrawler
+/WebCrawler/msedgedriver.exe
+/WebCrawler/Driver_Notes/

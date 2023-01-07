@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebCrawler
 {
@@ -12,9 +14,6 @@ namespace WebCrawler
 		private EdgeOptions _options;
 		private EdgeDriver _driver;
 
-        private string newPostNumber;
-        private string lastPostNumber;
-
         public Form1()
         {
             InitializeComponent();
@@ -22,14 +21,15 @@ namespace WebCrawler
             _driverService = EdgeDriverService.CreateDefaultService();
             _driverService.HideCommandPromptWindow = false;
             _options = new EdgeOptions();
-			_options.UseChromium = true;
+            // _options.UseChromium = true;
+            _options.AddArgument("--no-sandbox");
             _driver = new EdgeDriver(_driverService, _options);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void DCImageCrawlingBtn_Click(object sender, EventArgs e)
         {
-            newPostNumber = "0";
-            lastPostNumber = "1733";
+			string newPostNumber = "0";
+			string lastPostNumber = "1733";
 
             while (true)
             {
@@ -99,10 +99,65 @@ namespace WebCrawler
             }      
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
+		private void BaekjoonCodeDownloadBtn_Click(object sender, EventArgs e)
+		{
+			string userNickname = "mascari4615";
 
-        }
+			/*string userEmail = "";
+            string userPassword = "";
+
+			_driver.Navigate().GoToUrl($"https://www.acmicpc.net/login");
+
+            IWebElement emailInput = _driver.FindElement(By.XPath($"/html/body/div[2]/div[3]/div/div/form/div[2]/input"));
+            IWebElement passwordInput = _driver.FindElement(By.XPath($"/html/body/div[2]/div[3]/div/div/form/div[3]/input"));
+            IWebElement loginButton = _driver.FindElement(By.XPath($"/html/body/div[2]/div[3]/div/div/form/div[4]/div[2]/button"));
+
+            emailInput.SendKeys(userEmail);
+			passwordInput.SendKeys(userPassword);
+            loginButton.Click();
+
+			_driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(50000);*/
+
+			_driver.Navigate().GoToUrl($"https://www.acmicpc.net/user/{userNickname}");
+			IWebElement problemList = _driver.FindElement(By.XPath($"/html/body/div[2]/div[2]/div[3]/div[2]/div/div[2]/div[2]/div[2]/div"));
+			List<string> solvedProblemIDs = problemList.FindElements(By.TagName("a")).Select(x => x.Text).ToList();
+
+            richTextBox1.Text = String.Join(", ", solvedProblemIDs.ToArray());
+
+            for (int spi = 0; spi < solvedProblemIDs.Count; spi++)
+            {
+				_driver.Navigate().GoToUrl($"https://www.acmicpc.net/status?from_mine=1&problem_id={solvedProblemIDs[spi]}&user_id={userNickname}&language_id={1001}&result_id=4");
+                if (TryFindResponsiveID(out IWebElement cppResponsiveID))
+                    _driver.Navigate().GoToUrl($"https://www.acmicpc.net/source/download/{cppResponsiveID.Text}");
+
+				// _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1000);
+
+				_driver.Navigate().GoToUrl($"https://www.acmicpc.net/status?from_mine=1&problem_id={solvedProblemIDs[spi]}&user_id={userNickname}&language_id={86}&result_id=4");
+				if (TryFindResponsiveID(out IWebElement csResponsiveID))
+					_driver.Navigate().GoToUrl($"https://www.acmicpc.net/source/download/{csResponsiveID.Text}");
+
+				// _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1000);
+			}
+		}
+
+        private bool TryFindResponsiveID(out IWebElement responsiveID)
+        {
+			try
+			{
+				responsiveID = _driver.FindElement(By.XPath($"/html/body/div[2]/div[2]/div[3]/div[6]/div/table/tbody/tr/td[1]"));
+				return true;
+			}
+			catch (Exception)
+			{
+                responsiveID = null;
+				return false;
+			}
+		}
+
+		private void label1_Click(object sender, EventArgs e)
+        {
+			
+		}
 
         private void postNumber_TextChanged(object sender, EventArgs e)
         {
@@ -123,5 +178,15 @@ namespace WebCrawler
         {
 
         }
-    }
+
+		private void tabPage1_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void richTextBox1_TextChanged(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

@@ -1,13 +1,24 @@
-﻿#include <string>
-#include <vector>
+﻿#include <iostream>
 
 using namespace std;
 
-int solution(int n, int t)
+int main()
 {
-	for (int i = 0; i < t; i++)
+	while (true)
 	{
-		n *= 2;
+		string name;
+		int age;
+		int weight;
+
+		cin >> name >> age >> weight;
+		
+		if (name == "#")
+			break;
+
+		bool isSeniorClass = (age > 17) || (weight >= 80);
+
+		cout << name << ' ' << (isSeniorClass ? "Senior" : "Junior") << endl;
 	}
-    return n;
+
+	return 0;
 }

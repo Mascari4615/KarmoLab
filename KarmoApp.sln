@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KarmoCSharp", "KarmoCSharp\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KarmoCPlusPlus", "KarmoCPlusPlus\KarmoCPlusPlus.vcxproj", "{58CF5CAF-48AA-4873-A78B-9FFC1A2089F7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCrawler", "WebCrawler\WebCrawler.csproj", "{547363AA-0CD2-4273-9581-00E42D051AFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{58CF5CAF-48AA-4873-A78B-9FFC1A2089F7}.Release|x64.Build.0 = Release|x64
 		{58CF5CAF-48AA-4873-A78B-9FFC1A2089F7}.Release|x86.ActiveCfg = Release|Win32
 		{58CF5CAF-48AA-4873-A78B-9FFC1A2089F7}.Release|x86.Build.0 = Release|Win32
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Debug|x64.Build.0 = Debug|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Debug|x86.Build.0 = Debug|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Release|x64.ActiveCfg = Release|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Release|x64.Build.0 = Release|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Release|x86.ActiveCfg = Release|Any CPU
+		{547363AA-0CD2-4273-9581-00E42D051AFE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
