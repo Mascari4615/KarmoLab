@@ -1,16 +1,16 @@
-ï»¿#include <iostream>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <queue>
 
 using namespace std;
 
-// ë¬¸ì œ
-// return ëª¨ë“  ìˆ«ì K ì´ìƒ, ì„ì–´ì•¼ í•˜ëŠ” ìµœì†Œ íšŸìˆ˜
-// ë¶ˆê°€ëŠ¥ í•˜ë©´ -1
+// ¹®Á¦
+// return ¸ğµç ¼ıÀÚ K ÀÌ»ó, ¼¯¾î¾ß ÇÏ´Â ÃÖ¼Ò È½¼ö
+// ºÒ°¡´É ÇÏ¸é -1
 
-// ì¡°ê±´
-// ê°€ì¥ ë‚®ì€ + ë‘ ë²ˆì§¸ë¡œ ë‚®ì€ * 2
+// Á¶°Ç
+// °¡Àå ³·Àº + µÎ ¹øÂ°·Î ³·Àº * 2
 
 using namespace std;
 
@@ -54,7 +54,7 @@ int solution(vector<int> scoville, int K)
 	return mixCount;
 }
 
-// ì²˜ìŒì— Vectorë¡œ í’€ì—ˆë‹¤ê°€ ì‹œê°„ ì´ˆê³¼
+// Ã³À½¿¡ Vector·Î Ç®¾ú´Ù°¡ ½Ã°£ ÃÊ°ú
 
 /*
 int solution(vector<int> scoville, int K)
