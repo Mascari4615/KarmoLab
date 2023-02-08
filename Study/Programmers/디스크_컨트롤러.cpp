@@ -1,4 +1,4 @@
-ï»¿#include <string>
+#include <string>
 #include <vector>
 #include <algorithm>
 
@@ -23,14 +23,14 @@ int solution(vector<vector<int>> jobs)
 	int lastCompletedTime = 0;
 	int sumOfElapsedTime = 0;
 
-	for (int i = 0;  i < jobs.size();  i++)
+	for (int i = 0; i < jobs.size(); i++)
 	{
 		int curPocessIndex = -1;
 		int earliestReqTime = 1001;
 		int earliestReqIndex = -1;
 
-		// ë‹¤ìŒ ìž‘ì—…ì„ ì°¾ëŠ”ë‹¤.
-		// ë§Œì•½ ë‹¹ìž¥ ì‹œìž‘í•  ìˆ˜ ìžˆëŠ” ìž‘ì—…ì´ ì—†ëŠ” ê²½ìš°, ë‚¨ì€ ìž‘ì—… ì¤‘ ê°€ìž¥ ë¨¼ì € ìš”ì²­ëœ ìž‘ì—…ì„ ì°¾ëŠ”ë‹¤.
+		// ´ÙÀ½ ÀÛ¾÷À» Ã£´Â´Ù.
+		// ¸¸¾à ´çÀå ½ÃÀÛÇÒ ¼ö ÀÖ´Â ÀÛ¾÷ÀÌ ¾ø´Â °æ¿ì, ³²Àº ÀÛ¾÷ Áß °¡Àå ¸ÕÀú ¿äÃ»µÈ ÀÛ¾÷À» Ã£´Â´Ù.
 		for (int ji = 0; ji < jobs.size(); ji++)
 		{
 			if (completed[ji])
