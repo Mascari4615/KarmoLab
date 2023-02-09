@@ -25,7 +25,7 @@ int solution(vector<vector<int>> jobs)
 
 	for (int i = 0; i < jobs.size(); i++)
 	{
-		int curPocessIndex = -1;
+		int curProcessIndex = -1;
 		int earliestReqTime = 1001;
 		int earliestReqIndex = -1;
 
@@ -47,14 +47,14 @@ int solution(vector<vector<int>> jobs)
 
 			completed[ji] = true;
 
-			curPocessIndex = ji;
+			curProcessIndex = ji;
 			break;
 		}
 
-		if (curPocessIndex != -1)
+		if (curProcessIndex != -1)
 		{
-			sumOfElapsedTime += jobs[curPocessIndex][1] + (lastCompletedTime - jobs[curPocessIndex][0]);
-			lastCompletedTime += jobs[curPocessIndex][1];
+			sumOfElapsedTime += jobs[curProcessIndex][1] + (lastCompletedTime - jobs[curProcessIndex][0]);
+			lastCompletedTime += jobs[curProcessIndex][1];
 		}
 		else
 		{

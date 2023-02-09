@@ -1,4 +1,4 @@
-ï»¿#include <string>
+#include <string>
 #include <vector>
 #include <algorithm>
 #include <queue>
@@ -9,8 +9,8 @@ struct CompareProcessTime
 {
 	bool operator()(const vector<int>& v1, const vector<int>& v2)
 	{
-		// ìš°ì„ ìˆœìœ„ íëŠ” í° ê²ƒ ìˆœì„œëŒ€ë¡œ ì •ë ¬í•˜ê¸° ë•Œë¬¸ì—,
-		// ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ë§Œë“¤ì–´ì£¼ê¸° ìœ„í•´ì„œëŠ” ì •ë ¬ ìˆœì„œë¥¼ ë°˜ëŒ€ë¡œ
+		// ¿ì¼±¼øÀ§ Å¥´Â Å« °Í ¼ø¼­´ë·Î Á¤·ÄÇÏ±â ¶§¹®¿¡,
+		// ¿À¸§Â÷¼øÀ¸·Î ¸¸µé¾îÁÖ±â À§ÇØ¼­´Â Á¤·Ä ¼ø¼­¸¦ ¹Ý´ë·Î
 		return v1[1] > v2[1];
 	}
 };
