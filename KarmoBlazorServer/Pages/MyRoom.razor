@@ -1,0 +1,46 @@
+﻿@page "/MyRoom"
+
+<PageTitle>MyRoom</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <a href="Identity/Account/Manage">Hello, @context.User.Identity?.Name!</a>
+        <form method="post" action="Identity/Account/Logout">
+            <button type="submit" class="nav-link btn btn-link">Log out</button>
+        </form>
+    </Authorized>
+    <NotAuthorized>
+        Login First
+        <a href="Identity/Account/Register">Register</a>
+        <a href="Identity/Account/Login">Log in</a>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@* 주석, @{} 내외부 어디서든 사용가능 *@
+@* @{} 내부 C# 문법 사용 가능 *@
+@* @{} 내부에서는 // /**/ 주석 사용 가능 *@
+@* @{} 외부에서 변수나 오브젝트 참조하려면 변수명이나 오브젝트 앞에 @ 붙이면 사용가능 *@
+@* @expression() 인라인 C# *@
+@* @code 여러 줄 *@
+@* @functions *@
+@* @Page 구성 요소를 페이지로 식별하는 특수 태그*@
+@* @bind *@
+
+@* protected override void OnInitialized()
+    페이지가 초기화 될 때
+
+    list add vs list addRange
+
+    @if
+    @foreach 이렇게 단순히 @ 붙이는 것으로 C# 인라인 코드 사용 가능
+
+    <li style="background-image: url('@special.ImageUrl')">
+    URL 이런식으로?
+
+    namespace Temp.Data;
+    로 클래스를 만들었다면
+    클래스 파일 위치도 프로젝트의 Data 에 위치시키라고 함
+    원하면 다른 곳에 둬도 문제는 없음
+    그냥 표준인듯?
+*@

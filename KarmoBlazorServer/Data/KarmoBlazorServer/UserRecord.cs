@@ -12,6 +12,6 @@ public partial class UserRecord
     public string UserName { get; set; }
     public int SpecialThingId { get; set; }
     public DateTime Date { get; set; }
-    public int? Star { get; set; }
+    public byte? Star { get; set; }
     public string? Comment { get; set; }
 }
