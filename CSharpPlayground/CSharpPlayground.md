@@ -1,0 +1,3 @@
+# CSharpPlayground
+
+`dotnet run`  
