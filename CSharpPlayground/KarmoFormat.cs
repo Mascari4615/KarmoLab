@@ -4,8 +4,8 @@ using System.Text.RegularExpressions;
 
 public class KarmoFormat
 {
-	public static void Main()
-	// public static void Main_KarmoFormat()
+	// public static void Main()
+	public static void Main_KarmoFormat()
 	{
 		Console.WriteLine(NoSpace(@"ㅁ	ㅋ	ㄹ	ㅁ	ㅇ	ㅊ	ㄷ	ㅇ
 ㅂ	ㄲ	ㅈ	ㅂ	ㄱ	ㄷ	ㅈ	ㅇ
