@@ -4,8 +4,9 @@ using System.Text.RegularExpressions;
 
 public class YoutubePlaylistDataRegex
 {
-	public static void Main()
-	// public static void Main_	// public static void Main_KarmoRegex()
+	// public static void Main()
+	// public static void Main_
+	public static void Main_KarmoRegex()
 	{
 		YoutubePlaylistDataRegex.Regex(
 			@"C:\Users\masca\source\repos\Mascari4615.github.io\_posts\Post\Culture/Music\2024-07-13-Music.md");
