@@ -1,0 +1,1 @@
+{"name":"Local: sans","url":"c:\\Users\\masca\\source\\repos\\Cpp\\sans.cpp","tests":[{"id":1725289416633,"input":"5\nI A I S S\nS","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\masca\\source\\repos\\Cpp\\sans.cpp","group":"local","local":true}
