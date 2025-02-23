@@ -15,18 +15,21 @@
 			switch (key)
 			{
 				case "1":
-					KarmoFileNameChanger.Func1(args[1]);
+					KarmoRegax.Func1(args[1]);
 					break;
 				case "2":
-					KarmoFileNameChanger.Func2(args[1]);
+					KarmoRegax.Func2(args[1]);
 					break;
 				case "3":
-					KarmoFileNameChanger.Func3(args[2], args[1]);
+					KarmoRegax.Func3(args[2], args[1]);
 					break;
 				case "4":
-					KarmoFileNameChanger.Func4(args[1]);
+					KarmoRegax.Func4(args[1]);
 					break;
 				case "5":
+					KarmoRegax.Func5(args[1]);
+					break;
+				case "6":
 					YoutubePlaylistDataRegex.Regex(args[1]);
 					break;
 				default:
