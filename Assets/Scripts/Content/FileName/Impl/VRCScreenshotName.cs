@@ -20,7 +20,7 @@ namespace KarmoLab
 			}
 
 			string prefix = "VRChat_";
-			DirectoryInfo directory = new DirectoryInfo(folderPath);
+			DirectoryInfo directory = new(folderPath);
 			FileInfo[] files = directory.GetFiles();
 
 			if (files.Length == 0)

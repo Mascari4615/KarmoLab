@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace KarmoLab
 {
-	[DefaultExecutionOrder(-1000)]
+	[DefaultExecutionOrder(-900)]
 	public class GameManager : MonoBehaviour
 	{
 		[SerializeField] private List<Button> buttons;
