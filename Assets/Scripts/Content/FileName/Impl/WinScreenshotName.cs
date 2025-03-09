@@ -3,7 +3,9 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 
-public partial class FileNameManager : MonoBehaviour
+namespace KarmoLab
+{
+public partial class FileNameManager : Content
 {
 	private static void ChangeWinScreenshotName(string path)
 	{
@@ -64,4 +66,5 @@ public partial class FileNameManager : MonoBehaviour
 			}
 		}
 	}
+}
 }
