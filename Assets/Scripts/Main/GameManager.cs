@@ -40,9 +40,12 @@ namespace KarmoLab
 					continue;
 				}
 
+				MLog.Log($"Button {i} is set to {contents[i].name}");
+				
+				int index = i;
 				buttons[i].onClick.AddListener(() =>
 				{
-					SetContent(contents[i]);
+					SetContent(contents[index]);
 				});
 
 				TextMeshProUGUI buttonText = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
