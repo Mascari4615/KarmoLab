@@ -8,6 +8,8 @@ namespace KarmoLab
 {
 	public partial class FileNameManager : Content
 	{
+		private const string TEMP_PATH = "TEMP_PATH";
+
 		[SerializeField] private TMP_InputField inputFieldMain;
 		[SerializeField] private TMP_InputField inputFieldSub;
 		[SerializeField] private TMP_InputField inputFieldOutput;
@@ -49,7 +51,7 @@ namespace KarmoLab
 			{ 2, ((FunctionWithMainInput)ChangeVRCScreenshotName, nameof(ChangeVRCScreenshotName)) },
 			{ 3, ((FunctionWithTwoInputs)RemoveSomeString, nameof(RemoveSomeString)) },
 			{ 4, ((FunctionWithMainInput)KarmoRegax.Func4, nameof(KarmoRegax.Func4)) },
-			{ 5, ((FunctionWithMainInput)FileNameToString, nameof(FileNameToString)) },
+			{ 5, ((FunctionWithTwoInputs)FileNameToString, nameof(FileNameToString)) },
 		};
 		}
 
@@ -74,7 +76,8 @@ namespace KarmoLab
 					button.onClick.AddListener(() =>
 					{
 						MLog.Log($"Function {num} ({functionName}) is called.");
-						twoInputsFunc(inputFieldMain.text, inputFieldSub.text);
+						string subString = string.IsNullOrEmpty(inputFieldSub.text) ? TEMP_PATH : inputFieldSub.text;
+						twoInputsFunc(inputFieldMain.text, subString);
 					});
 				}
 			}

@@ -21,6 +21,7 @@ namespace KarmoLab
 		private void Init()
 		{
 			InitializeContents();
+			SetContent(contents[0]);
 		}
 
 		public void InitializeContents()
@@ -30,6 +31,7 @@ namespace KarmoLab
 			foreach (Content content in contents)
 			{
 				content.Init();
+				content.Hide();
 			}
 
 			for (int i = 0; i < buttons.Count; i++)
@@ -41,7 +43,7 @@ namespace KarmoLab
 				}
 
 				MLog.Log($"Button {i} is set to {contents[i].name}");
-				
+
 				int index = i;
 				buttons[i].onClick.AddListener(() =>
 				{
