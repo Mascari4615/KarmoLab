@@ -61,7 +61,24 @@ public partial class FileNameManager : Content
 				string oldFileName = file.Name;
 				string newFileName = $"{date}_{time}";
 				string newFilePath = Path.Combine(folderPath, newFileName);
-				file.MoveTo(newFilePath);
+				
+				try
+				{
+					file.MoveTo(newFilePath);
+				}
+				catch (Exception e)
+				{
+					MLog.Log($"Failed to rename: {file.Name} -> {newFileName}");
+					MLog.Log(e.Message);
+
+					// 이미 존재하는 파일이 있을 경우
+					// 파일 이름 뒤에 _1을 붙여서 다시 시도
+
+					string newName = FileNameUtil.GetNewFileName(folderPath, newFileName, 1);
+					newFilePath = Path.Combine(folderPath, newName);
+					file.MoveTo(newFilePath);
+				}
+
 				MLog.Log($"Renamed: {oldFileName} -> {newFileName}");
 			}
 		}
