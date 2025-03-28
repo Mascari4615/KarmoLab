@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KarmoLab
 {
-	public class KarmoRegax
+	public class KarmoRegex
 	{
 		public static void Func4(string path)
 		{

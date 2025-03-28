@@ -46,13 +46,13 @@ namespace KarmoLab
 		private void InitializeFunctionMap()
 		{
 			functionMap = new Dictionary<int, (Delegate function, string functionName)>
-		{
-			{ 1, ((FunctionWithMainInput)ChangeWinScreenshotName, nameof(ChangeWinScreenshotName)) },
-			{ 2, ((FunctionWithMainInput)ChangeVRCScreenshotName, nameof(ChangeVRCScreenshotName)) },
-			{ 3, ((FunctionWithTwoInputs)RemoveSomeString, nameof(RemoveSomeString)) },
-			{ 4, ((FunctionWithMainInput)KarmoRegax.Func4, nameof(KarmoRegax.Func4)) },
-			{ 5, ((FunctionWithTwoInputs)FileNameToString, nameof(FileNameToString)) },
-		};
+			{
+				{ 1, ((FunctionWithMainInput)ChangeWinScreenshotName, nameof(ChangeWinScreenshotName)) },
+				{ 2, ((FunctionWithMainInput)ChangeVRCScreenshotName, nameof(ChangeVRCScreenshotName)) },
+				{ 3, ((FunctionWithTwoInputs)RemoveSomeString, nameof(RemoveSomeString)) },
+				{ 4, ((FunctionWithMainInput)KarmoRegex.Func4, nameof(KarmoRegex.Func4)) },
+				{ 5, ((FunctionWithTwoInputs)FileNameToString, nameof(FileNameToString)) },
+			};
 		}
 
 		public void SetFunc(Button button, int num)
