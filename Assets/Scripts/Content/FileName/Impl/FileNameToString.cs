@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KarmoLab
 {
-	public partial class FileNameManager : Content
+	public partial class FileNameManager : ButtonContent
 	{
 		// 경로 내 파일들의 이름을 포맷에 맞게 출력하는 함수
 		public void FileNameToString(string path, string somePath)
@@ -24,7 +24,7 @@ namespace KarmoLab
 			{
 				if (somePath == TEMP_PATH)
 				{
-					// paht가 'C:\Users\masca\source\repos\_Mascari4615\Mascari4615.github.io\assets\project\ProjectName' 이런식으로 주어질 경우
+					// path가 'C:\Users\masca\source\repos\_Mascari4615\Mascari4615.github.io\assets\project\ProjectName' 이런식으로 주어질 경우
 					// assets\ 이후의 부분을 somePath로 설정
 
 					string[] split = path.Split("project\\");

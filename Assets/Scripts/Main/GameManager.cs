@@ -9,7 +9,9 @@ namespace KarmoLab
 	[DefaultExecutionOrder(-900)]
 	public class GameManager : MonoBehaviour
 	{
-		[SerializeField] private List<Button> buttons;
+		[SerializeField] private Button buttonPrefab;
+		[SerializeField] private Transform buttonParent;
+
 		private List<Content> contents = new();
 		private Content currentContent = null;
 
@@ -34,23 +36,19 @@ namespace KarmoLab
 				content.Hide();
 			}
 
-			for (int i = 0; i < buttons.Count; i++)
+			for (int i = 0; i < contents.Count; i++)
 			{
-				if (i >= contents.Count)
-				{
-					buttons[i].gameObject.SetActive(false);
-					continue;
-				}
-
 				MLog.Log($"Button {i} is set to {contents[i].name}");
 
+				Button button = Instantiate(buttonPrefab, buttonParent);
+
 				int index = i;
-				buttons[i].onClick.AddListener(() =>
+				button.onClick.AddListener(() =>
 				{
 					SetContent(contents[index]);
 				});
 
-				TextMeshProUGUI buttonText = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
+				TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
 				buttonText.text = contents[i].name;
 			}
 		}

@@ -7,13 +7,14 @@ namespace KarmoLab
 {
 	public static class FileNameUtil
 	{
-		public static string GetNewFileName(string folderPath, string targetName, int subIndex)
+		public static string GetNewFileName(string folderPath, string targetName, string extension, int subIndex)
 		{
-			string newFileName = $"{targetName}_{subIndex}.png";
-			if (File.Exists(Path.Combine(folderPath, newFileName)))
+			if (File.Exists(Path.Combine(folderPath, $"{targetName}_{subIndex}{extension}")))
 			{
-				return GetNewFileName(folderPath, targetName, subIndex + 1);
+				return GetNewFileName(folderPath, targetName, extension, subIndex + 1);
 			}
+			string leading2SubIndex = subIndex.ToString().PadLeft(2, '0');
+			string newFileName = $"{targetName}_{leading2SubIndex}";
 			return newFileName;
 		}
 	}

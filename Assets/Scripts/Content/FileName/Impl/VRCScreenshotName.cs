@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace KarmoLab
 {
-	public partial class FileNameManager : Content
+	public partial class FileNameManager : ButtonContent
 	{
 		private static void ChangeVRCScreenshotName(string path)
 		{
@@ -31,13 +31,16 @@ namespace KarmoLab
 
 			foreach (FileInfo file in files)
 			{
-				if (file.Name.StartsWith(prefix))
+				string fileName = Path.GetFileNameWithoutExtension(file.Name);
+				string extension = file.Extension;
+
+				if (fileName.StartsWith(prefix))
 				{
 					// Regular expression
 					// ^VRChat_(\d{4})-(\d{2})-(\d{2})_(\d{2})-(\d{2})-(\d{2})\.\d{3}_\d+x\d+$
 					// $1$2$3_$4$5$6.png
 
-					string[] parts = file.Name.Split('_', '.');
+					string[] parts = fileName.Split('_', '.');
 
 					string date;
 					string time;
@@ -62,13 +65,15 @@ namespace KarmoLab
 					}
 
 					// 2024-11-04 -> 241104
-					date = date.Replace("-", "").Substring(2);
+					// date = date.Replace("-", "").Substring(2);
+					date = date.Replace("-", "")[2..];
 
 					// 19-09-40 -> 190940
 					time = time.Replace("-", "");
 
-					string newFileName = $"{date}_{time}.png";
-					string newFilePath = Path.Combine(folderPath, newFileName);
+					string newFileName = $"{date}_{time}";
+					string newFilePath = Path.Combine(folderPath, newFileName + extension);
+
 					try
 					{
 						file.MoveTo(newFilePath);
@@ -78,10 +83,8 @@ namespace KarmoLab
 						MLog.Log($"Failed to rename: {file.Name} -> {newFileName}");
 						MLog.Log(e.Message);
 
-						// 이미 존재하는 파일이 있을 경우
-						// 파일 이름 뒤에 _1을 붙여서 다시 시도
-
-						string newName = FileNameUtil.GetNewFileName(folderPath, newFileName, 1);
+						// 이미 존재하는 파일이 있을 경우, 파일 이름 뒤에 _1을 붙여서 다시 시도
+						string newName = FileNameUtil.GetNewFileName(folderPath, newFileName, extension, 1);
 						newFilePath = Path.Combine(folderPath, newName);
 						file.MoveTo(newFilePath);
 					}

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KarmoLab
 {
-	public partial class FileNameManager : Content
+	public partial class FileNameManager : ButtonContent
 	{
 		public void RemoveSomeString(string path, string removeString = "-")
 		{
@@ -14,14 +14,14 @@ namespace KarmoLab
 			MLog.Log($"Remove String: {removeString}");
 
 			string folderPath = path;
-			if (!Directory.Exists(folderPath))
+			if (Directory.Exists(folderPath) == false)
 			{
 				MLog.Log("The provided folder path does not exist.");
 				return;
 			}
 
 			string prefix = "";
-			DirectoryInfo directory = new DirectoryInfo(folderPath);
+			DirectoryInfo directory = new(folderPath);
 			FileInfo[] files = directory.GetFiles();
 
 			foreach (FileInfo file in files)
@@ -29,9 +29,8 @@ namespace KarmoLab
 				if (file.Name.StartsWith(prefix))
 				{
 					// 확장자랑 분리
-					string[] parts = file.Name.Split('.');
-					string fileName = parts[0];
-					string extension = parts[1];
+					string fileName = Path.GetFileNameWithoutExtension(file.Name);
+					string extension = file.Extension;
 
 					string newFileName = fileName.Replace(removeString, "");
 					string newFilePath = Path.Combine(folderPath, newFileName);

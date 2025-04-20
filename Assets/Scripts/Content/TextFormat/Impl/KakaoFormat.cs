@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace KarmoLab
 {
-	public partial class TextFormatManager : Content
+	public partial class TextFormatManager : ButtonContent
 	{
 		// KakaoTalk 대화 Text를 내가 원하는 Format으로
 		public void KakaoFormat(string filePath)
