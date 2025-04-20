@@ -12,37 +12,20 @@ using Newtonsoft.Json.Linq;
 
 namespace KarmoLab
 {
-	public class YoutubeApiManager : Content
+	public class YoutubeApiManager : ButtonContent
 	{
-		[SerializeField] private TMP_InputField inputFieldPlaylistID;
-		[SerializeField] private TMP_InputField inputFieldApiID;
-		[SerializeField] private TMP_InputField inputFieldOutput;
-		[SerializeField] private Button[] buttons;
-
 		private readonly List<VideoData> allVideoData = new();
 
-		public override void Init()
+		protected override Dictionary<int, (Delegate function, string functionName)> InitializeFunctionMap()
 		{
-			buttons[0].onClick.AddListener(SomeFunc);
-			for (int i = 1; i < buttons.Length; i++)
-				buttons[i].gameObject.SetActive(false);
+			return new Dictionary<int, (Delegate function, string functionName)>
+			{
+				{ 1, ((FunctionWithTwoInputs)SomeFunc, nameof(SomeFunc)) },
+			};
 		}
 
-		public override void Show()
+		private void SomeFunc(string playlistID, string apiID)
 		{
-			gameObject.SetActive(true);
-		}
-
-		public override void Hide()
-		{
-			gameObject.SetActive(false);
-		}
-
-		private void SomeFunc()
-		{
-			string playlistID = inputFieldPlaylistID.text;
-			string apiID = inputFieldApiID.text;
-
 			if (string.IsNullOrEmpty(playlistID) || string.IsNullOrEmpty(apiID))
 			{
 				MLog.Log("Please enter the playlist ID and API key.");
