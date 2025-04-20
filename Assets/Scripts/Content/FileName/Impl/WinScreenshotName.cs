@@ -20,7 +20,7 @@ namespace KarmoLab
 			}
 
 			string[] prefixes = { "Screenshot 20", "스크린샷 20" };
-			DirectoryInfo directory = new DirectoryInfo(folderPath);
+			DirectoryInfo directory = new(folderPath);
 			FileInfo[] files = directory.GetFiles();
 
 			if (files.Length == 0)
@@ -57,11 +57,10 @@ namespace KarmoLab
 					string time = parts[2];
 
 					// 2024-05-14 -> 240514
-					date = date.Replace("-", "").Substring(2);
+					date = date.Replace("-", "")[2..];
 
-					string oldFileName = file.Name;
 					string newFileName = $"{date}_{time}";
-					string newFilePath = Path.Combine(folderPath, newFileName);
+					string newFilePath = Path.Combine(folderPath, newFileName + file.Extension);
 
 					try
 					{
@@ -80,7 +79,7 @@ namespace KarmoLab
 						file.MoveTo(newFilePath);
 					}
 
-					MLog.Log($"Renamed: {oldFileName} -> {newFileName}");
+					MLog.Log($"Renamed: {fileName} -> {newFileName}");
 				}
 			}
 		}

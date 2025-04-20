@@ -32,7 +32,6 @@ namespace KarmoLab
 			foreach (FileInfo file in files)
 			{
 				string fileName = Path.GetFileNameWithoutExtension(file.Name);
-				string extension = file.Extension;
 
 				if (fileName.StartsWith(prefix))
 				{
@@ -72,7 +71,7 @@ namespace KarmoLab
 					time = time.Replace("-", "");
 
 					string newFileName = $"{date}_{time}";
-					string newFilePath = Path.Combine(folderPath, newFileName + extension);
+					string newFilePath = Path.Combine(folderPath, newFileName + file.Extension);
 
 					try
 					{
@@ -84,7 +83,7 @@ namespace KarmoLab
 						MLog.Log(e.Message);
 
 						// 이미 존재하는 파일이 있을 경우, 파일 이름 뒤에 _1을 붙여서 다시 시도
-						string newName = FileNameUtil.GetNewFileName(folderPath, newFileName, extension, 1);
+						string newName = FileNameUtil.GetNewFileName(folderPath, newFileName, file.Extension, 1);
 						newFilePath = Path.Combine(folderPath, newName);
 						file.MoveTo(newFilePath);
 					}
