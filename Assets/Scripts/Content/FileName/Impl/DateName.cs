@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace KarmoLab
 {
@@ -19,7 +20,14 @@ namespace KarmoLab
 				return;
 			}
 
-			string[] prefixes = { prefix, /* 추가 */ };
+			List<string> prefixes = new();
+			bool notInvalidPrefix = string.IsNullOrEmpty(prefix) || (prefix == TEMP_PATH);
+			if (notInvalidPrefix == false)
+			{
+				prefixes.Add(prefix);
+			}
+			Debug.Log($"{nameof(prefixes)}: {string.Join(", ", prefixes)}");
+
 			DirectoryInfo directory = new(folderPath);
 			FileInfo[] files = directory.GetFiles();
 
@@ -31,18 +39,12 @@ namespace KarmoLab
 
 			foreach (FileInfo file in files)
 			{
-				bool isMatched = false;
-				for (int i = 0; i < prefixes.Length; i++)
-				{
-					if (file.Name.StartsWith(prefixes[i]))
-					{
-						isMatched = true;
-						break;
-					}
-				}
-
+				bool isMatched = FileNameUtil.FileNameStartsWith(file, prefixes);
 				if (isMatched == false)
-					continue;
+				{
+					MLog.Log($"File name does not match the prefix: {file.Name}");
+					continue; // Skip files that do not match the prefix
+				}
 
 				string fileName = Path.GetFileNameWithoutExtension(file.Name);
 				string extension = file.Extension;

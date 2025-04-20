@@ -17,5 +17,27 @@ namespace KarmoLab
 			string newFileName = $"{targetName}_{leading2SubIndex}";
 			return newFileName;
 		}
+
+		public static bool FileNameStartsWith(FileInfo fileInfo, List<string> prefixes)
+		{
+			if ((prefixes == null) || (prefixes.Count == 0))
+			{
+				return true; // No prefixes provided, consider it a match
+			}
+
+			foreach (string prefix in prefixes)
+			{
+				if (string.IsNullOrEmpty(prefix) || (prefix == FileNameManager.TEMP_PATH))
+				{
+					continue; // Skip empty prefixes
+				}
+
+				if (fileInfo.Name.StartsWith(prefix))
+				{
+					return true; // Match found
+				}
+			}
+			return false; // No match found
+		}
 	}
 }

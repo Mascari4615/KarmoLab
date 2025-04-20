@@ -8,7 +8,7 @@ namespace KarmoLab
 {
 	public partial class FileNameManager : ButtonContent
 	{
-		private const string TEMP_PATH = "TEMP_PATH";
+		public const string TEMP_PATH = "TEMP_PATH";
 
 		protected override Dictionary<int, (Delegate function, string functionName)> InitializeFunctionMap()
 		{
