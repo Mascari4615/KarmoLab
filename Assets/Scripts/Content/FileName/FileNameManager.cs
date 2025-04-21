@@ -20,6 +20,7 @@ namespace KarmoLab
 				{ 4, ((FunctionWithMainInput)KarmoRegex.Func4, nameof(KarmoRegex.Func4)) },
 				{ 5, ((FunctionWithTwoInputs)FileNameToString, nameof(FileNameToString)) },
 				{ 6, ((FunctionWithTwoInputs)ChangeNameToDate, nameof(ChangeNameToDate)) },
+				{ 7, ((FunctionWithTwoInputs)ModSubIndex, nameof(ModSubIndex)) },
 			};
 		}
 	}
