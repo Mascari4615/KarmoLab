@@ -21,6 +21,7 @@ namespace KarmoLab
 				{ 5, ((FunctionWithTwoInputs)FileNameToString, nameof(FileNameToString)) },
 				{ 6, ((FunctionWithTwoInputs)ChangeNameToDate, nameof(ChangeNameToDate)) },
 				{ 7, ((FunctionWithTwoInputs)ModSubIndex, nameof(ModSubIndex)) },
+				{ 8, ((FunctionWithTwoInputs)ConvertCase, nameof(ConvertCase))}
 			};
 		}
 	}
