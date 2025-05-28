@@ -74,8 +74,8 @@ namespace KarmoLab
 						// 이미 존재하는 파일이 있을 경우
 						// 파일 이름 뒤에 _1을 붙여서 다시 시도
 
-						string newName = FileNameUtil.GetNewFileName(folderPath, newFileName, file.Extension, 1);
-						newFilePath = Path.Combine(folderPath, newName);
+						string newName = FileNameUtil.GetNewFileName(folderPath, newFileName, 1);
+						newFilePath = Path.Combine(folderPath, newName + file.Extension);
 						file.MoveTo(newFilePath);
 					}
 

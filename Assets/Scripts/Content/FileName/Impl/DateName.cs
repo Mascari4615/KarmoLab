@@ -61,7 +61,13 @@ namespace KarmoLab
 					dateTime = lastWriteTime < dateTime ? lastWriteTime : dateTime;
 				}
 
-				string newFileName = dateTime.ToString("yyMMdd_HHmmss");
+				string newFileName = dateTime.ToString("yyMMdd-HHmmss");
+				if (FileNameUtil.IsFileNameExists(folderPath, newFileName))
+				{
+					// 이미 존재하는 파일이 있을 경우, 파일 이름 뒤에 _1을 붙여서 다시 시도
+					newFileName = FileNameUtil.GetNewFileName(folderPath, newFileName, 1);
+				}
+
 				string newFilePath = Path.Combine(folderPath, newFileName + extension);
 				// string newFilePath = Path.Combine(folderPath, newFileName + ".png");
 
@@ -72,15 +78,6 @@ namespace KarmoLab
 				catch (Exception e)
 				{
 					MLog.Log($"Failed to rename: {fileName} -> {newFileName}\n{e.Message}");
-
-					// 이미 존재하는 파일이 있을 경우, 파일 이름 뒤에 _1을 붙여서 다시 시도
-					newFileName = FileNameUtil.GetNewFileName(folderPath, newFileName, extension, 1);
-					// newFileName = FileNameUtil.GetNewFileName(folderPath, newFileName, ".png", 1);
-					newFilePath = Path.Combine(folderPath, newFileName + extension);
-					// newFilePath = Path.Combine(folderPath, newFileName + ".png");
-
-					MLog.Log($"그래서: {fileName} -> {newFileName}");
-					file.MoveTo(newFilePath);
 				}
 
 				MLog.Log($"Renamed: {fileName} -> {newFileName}");

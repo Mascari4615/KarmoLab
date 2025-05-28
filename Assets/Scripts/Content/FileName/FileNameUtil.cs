@@ -7,15 +7,26 @@ namespace KarmoLab
 {
 	public static class FileNameUtil
 	{
-		public static string GetNewFileName(string folderPath, string targetName, string extension, int subIndex)
+		private const string SUB_INDEX_PREFIX = "-";
+
+		// 확장자 제외, 파일 이름만 비교
+		// https://stackoverflow.com/questions/22641503/check-if-file-exists-not-knowing-the-extension
+		public static bool IsFileNameExists(string folderPath, string targetName)
 		{
-			if (File.Exists(Path.Combine(folderPath, $"{targetName}_{subIndex}{extension}")))
-			{
-				return GetNewFileName(folderPath, targetName, extension, subIndex + 1);
-			}
+			int exists = Directory.GetFiles($"{folderPath}/", $"{targetName}.*").Length;
+			return exists > 0;
+		}
+
+		public static string GetNewFileName(string folderPath, string targetName, int subIndex)
+		{
 			string leading2SubIndex = subIndex.ToString().PadLeft(2, '0');
-			string newFileName = $"{targetName}_{leading2SubIndex}";
-			return newFileName;
+			string newFileName = $"{targetName}{SUB_INDEX_PREFIX}{leading2SubIndex}";
+
+			// if (File.Exists(Path.Combine(folderPath, $"{targetName}{SUB_INDEX_PREFIX}{subIndex}{extension}")))
+			if (IsFileNameExists(folderPath, newFileName))
+				return GetNewFileName(folderPath, targetName, subIndex + 1);
+			else
+				return newFileName;
 		}
 
 		public static bool FileNameStartsWith(FileInfo fileInfo, List<string> prefixes)
