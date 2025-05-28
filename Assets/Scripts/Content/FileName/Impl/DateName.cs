@@ -30,6 +30,7 @@ namespace KarmoLab
 
 			DirectoryInfo directory = new(folderPath);
 			FileInfo[] files = directory.GetFiles();
+			Array.Sort(files, (x, y) => string.Compare(x.Name, y.Name, StringComparison.Ordinal)); // 이름 순으로 정렬
 
 			if (files.Length == 0)
 			{
