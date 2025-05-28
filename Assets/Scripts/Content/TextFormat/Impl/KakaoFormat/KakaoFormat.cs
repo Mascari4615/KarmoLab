@@ -13,9 +13,34 @@ namespace KarmoLab
 			MLog.Log($"{nameof(KakaoFormat)} is called.");
 			MLog.Log($"Path: {filePath}");
 
+			if (string.IsNullOrEmpty(filePath))
+			{
+				// C:\Users\masca\Downloads\KakaoTalk_*.txt
+				string path = Path.GetDirectoryName(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
+				path = Path.Combine(path, "Downloads");
+
+				// 경로 중에서 KakaoTalk_*.txt 파일을 찾습니다.
+				string[] files = Directory.GetFiles(path, "KakaoTalk_*.txt");
+
+				// 가장 최근 파일을 선택합니다.
+				if (files.Length > 0)
+				{
+					Array.Sort(files, (x, y) => File.GetLastWriteTime(y).CompareTo(File.GetLastWriteTime(x)));
+					filePath = files[0];
+					MLog.Log($"Using the most recent file: {filePath}");
+				}
+				else
+				{
+					MLog.Log("No KakaoTalk text files found in the Downloads folder.");
+					return;
+				}
+			}
+
+			filePath = filePath.Trim('"');
+
 			if (File.Exists(filePath) == false)
 			{
-				MLog.Log("The provided file path does not exist.");
+				MLog.Log($"The provided file path does not exist: {filePath}");
 				return;
 			}
 
@@ -27,6 +52,14 @@ namespace KarmoLab
 			StringBuilder formattedText = new();
 			string[] lines = File.ReadAllLines(filePath);
 
+			bool isValidFile = (lines.Length > 0) && lines[0].Contains("님과 카카오톡 대화");
+
+			if (isValidFile == false)
+			{
+				MLog.Log("The provided file is not a valid KakaoTalk chat file.");
+				return;
+			}
+
 			// 모바일과 PC의 KakaoTalk 대화 형식이 다르기 때문에, 구분합니다.
 			// 모바일은 '2025년 3월 26일 오후 12:27' 형식으로 시작합니다.
 			// PC는 '2025.03.26 오후 12:27' 형식으로 시작합니다.
@@ -34,10 +67,12 @@ namespace KarmoLab
 
 			if (isMobile)
 			{
+				MLog.Log("Mobile format detected.");
 				MobileFormat();
 			}
 			else
 			{
+				MLog.Log("PC format detected.");
 				PCFormat();
 			}
 
@@ -58,10 +93,10 @@ namespace KarmoLab
 					// 첫 번째 ','를 기준으로 나눕니다.
 					string[] parts = line.Split(new[] { ',' }, 2);
 
-					bool isChatBeginningBlock = (parts.Length == 2) && parts[0].Contains("202");
+					bool isChatStartLine = (parts.Length == 2) && parts[0].Contains("202");
 					// timePart가 '202@년'를 포함하는지 확인,
 					// 대화 내용 중 줄바꿈한 Line에 쉼표가 들어간 경우도 있어서.
-					if (isChatBeginningBlock)
+					if (isChatStartLine)
 					{
 						string time = string.Empty;
 						{
@@ -142,8 +177,11 @@ namespace KarmoLab
 				// 앞에 3줄은 제외
 				lines = lines[3..];
 
-				foreach (string line in lines)
+				// foreach (string line in lines)
+				for (int i = 0; i < lines.Length; i++)
 				{
+					string line = lines[i];
+
 					// 라인이 비어있거나 공백으로만 이루어진 경우는 건너뜁니다.
 					if (string.IsNullOrWhiteSpace(line))
 					{
@@ -154,22 +192,32 @@ namespace KarmoLab
 					// ']'를 기준으로 세 조각으로 나눕니다.
 					string[] parts = line.Split(new[] { ']' }, 3);
 
-					bool isChatBeginningBlock = line.Contains(formattedNickname) && parts.Length == 3;
-					if (isChatBeginningBlock)
+					bool isChatLine = i >= 3;
+					if (isChatLine)
 					{
-						string time;
-						{
-							// " [07:28" -> "07:28"
-							time = parts[1].Trim().TrimStart('[').Trim();
-						}
+						bool isChatStartLine = line.Contains(formattedNickname) && (parts.Length == 3); // 말풍선 시작 라인인지 확인
 
-						string message;
+						if (isChatStartLine)
 						{
-							// " Test" -> "Test"
-							message = parts[2].Trim();
-						}
+							string time;
+							{
+								// " [07:28" -> "07:28"
+								time = parts[1].Trim().TrimStart('[').Trim();
+							}
 
-						formattedText.AppendLine($"- {time} {message}");
+							string message;
+							{
+								// " Test" -> "Test"
+								message = parts[2].Trim();
+							}
+
+							formattedText.AppendLine($"- {time} {message}");
+						}
+						else
+						{
+							// 말풍선이 아닌 경우, 즉 대화 내용 중 줄바꿈한 Line
+							formattedText.AppendLine($"  - {line.Trim()}");
+						}
 					}
 					else
 					{
