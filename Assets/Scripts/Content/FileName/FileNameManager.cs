@@ -1,6 +1,4 @@
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 
@@ -21,7 +19,8 @@ namespace KarmoLab
 				{ 5, ((FunctionWithTwoInputs)FileNameToString, nameof(FileNameToString)) },
 				{ 6, ((FunctionWithTwoInputs)ChangeNameToDate, nameof(ChangeNameToDate)) },
 				{ 7, ((FunctionWithTwoInputs)ModSubIndex, nameof(ModSubIndex)) },
-				{ 8, ((FunctionWithTwoInputs)ConvertCase, nameof(ConvertCase))}
+				{ 8, ((FunctionWithTwoInputs)ConvertCase, nameof(ConvertCase))},
+				{ 9, ((FunctionWithTwoInputs)ConvertString, nameof(ConvertString))},
 			};
 		}
 	}
