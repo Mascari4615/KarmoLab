@@ -221,8 +221,21 @@ namespace KarmoLab
 					}
 					else
 					{
-						// 원본 라인을 그대로 추가합니다.
-						formattedText.AppendLine(line.Trim());
+						// "--------------- 25년 4월 21일 월요일 ---------------" -> "## 21: 카카오"
+
+						string datePart = line.Trim().TrimStart('-').TrimEnd('-').Trim();
+						string[] dateParts = datePart.Split(' ');
+
+						if (dateParts.Length >= 3)
+						{
+							// "25년 4월 21일" -> "21: 카카오"
+							string day = dateParts[2].TrimEnd('일');
+							formattedText.AppendLine($"## {day}: 카카오");
+						}
+						else
+						{
+							formattedText.AppendLine($"{line.Trim()}");
+						}
 					}
 				}
 
