@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 namespace KarmoLab
 {
 	public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
@@ -13,11 +12,13 @@ namespace KarmoLab
 			{
 				if (instance == null)
 				{
-					instance = FindObjectOfType<T>();
+					instance = FindFirstObjectByType<T>();
 					if (instance == null)
 					{
-						GameObject obj = new GameObject();
-						obj.name = typeof(T).Name;
+						GameObject obj = new()
+						{
+							name = typeof(T).Name
+						};
 						instance = obj.AddComponent<T>();
 					}
 				}
