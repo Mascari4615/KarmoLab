@@ -192,7 +192,7 @@ namespace KarmoLab
 					// ']'를 기준으로 세 조각으로 나눕니다.
 					string[] parts = line.Split(new[] { ']' }, 3);
 
-					bool isChatLine = i >= 3;
+					bool isChatLine = line.StartsWith("-----") == false;
 					if (isChatLine)
 					{
 						bool isChatStartLine = line.Contains(formattedNickname) && (parts.Length == 3); // 말풍선 시작 라인인지 확인
